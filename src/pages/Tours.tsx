@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Search, SlidersHorizontal, X, MapPin, Clock, Star } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, SlidersHorizontal, X, MapPin, Clock, Star, Sparkles, ArrowUpDown } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Slider } from '@/components/ui/slider';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
+import { ToursGridSkeleton } from '@/components/ui/skeleton';
 import tourCamp from '@/assets/tour-camp.jpg';
 import tourQuad from '@/assets/tour-quad.jpg';
 import tourCamel from '@/assets/tour-camel.jpg';
@@ -167,9 +168,16 @@ const Tours = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [sortBy, setSortBy] = useState(searchParams.get('sort') || 'popularity');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Filtered tours
   const [filteredTours, setFilteredTours] = useState(allTours);
+
+  // Simulate loading on mount
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     let result = [...allTours];
@@ -351,17 +359,41 @@ const Tours = () => {
       <Header />
 
       {/* Hero */}
-      <section className="pt-24 pb-12 bg-gradient-to-b from-card to-background">
-        <div className="container mx-auto px-4">
+      <section className="pt-24 pb-12 bg-gradient-to-b from-card to-background relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            className="absolute top-20 right-10 w-64 h-64 bg-terracotta/5 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-10 w-48 h-48 bg-sunset/5 rounded-full blur-3xl"
+            animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 10, repeat: Infinity }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-medium mb-4"
+            >
+              <Sparkles className="w-4 h-4" />
+              Discover Morocco
+            </motion.div>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               {t('common.tours')}
             </h1>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
               {t('featured.subtitle')}
             </p>
           </motion.div>
@@ -433,74 +465,102 @@ const Tours = () => {
               </div>
 
               {/* Tours Grid */}
-              {filteredTours.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {filteredTours.map((tour, index) => (
-                    <motion.div
-                      key={tour.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link to={`/tours/${tour.id}`}>
-                        <div className="group bg-card rounded-xl overflow-hidden border border-border hover:border-terracotta/50 transition-all duration-300 hover:shadow-xl">
-                          {/* Image */}
-                          <div className="relative aspect-[4/3] overflow-hidden">
-                            <img
-                              src={tour.image}
-                              alt={tour.name}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div className="absolute top-3 left-3">
-                              <Badge className="bg-background/90 text-foreground backdrop-blur-sm">
-                                {tour.category}
-                              </Badge>
+              <AnimatePresence mode="wait">
+                {isLoading ? (
+                  <motion.div
+                    key="loading"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <ToursGridSkeleton count={6} />
+                  </motion.div>
+                ) : filteredTours.length > 0 ? (
+                  <motion.div
+                    key="tours"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+                  >
+                    {filteredTours.map((tour, index) => (
+                      <motion.div
+                        key={tour.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ y: -4 }}
+                      >
+                        <Link to={`/tours/${tour.id}`}>
+                          <div className="group bg-card rounded-xl overflow-hidden border border-border hover:border-terracotta/50 transition-all duration-300 hover:shadow-xl hover:shadow-terracotta/5">
+                            {/* Image */}
+                            <div className="relative aspect-[4/3] overflow-hidden">
+                              <img
+                                src={tour.image}
+                                alt={tour.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="absolute top-3 left-3">
+                                <Badge className="bg-background/90 text-foreground backdrop-blur-sm border-0 shadow-sm">
+                                  {tour.category}
+                                </Badge>
+                              </div>
                             </div>
-                          </div>
 
-                          {/* Content */}
-                          <div className="p-5">
-                            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                              <MapPin className="h-4 w-4" />
-                              <span>{tour.city}</span>
-                              <span className="mx-1">•</span>
-                              <Clock className="h-4 w-4" />
-                              <span>
-                                {tour.duration_days} {tour.duration_days === 1 ? t('common.day') : t('common.days')}
-                              </span>
-                            </div>
-
-                            <h3 className="font-semibold text-foreground group-hover:text-terracotta transition-colors line-clamp-2 mb-3">
-                              {tour.name}
-                            </h3>
-
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-1">
-                                <Star className="h-4 w-4 fill-accent text-accent" />
-                                <span className="font-medium">{tour.rating}</span>
-                                <span className="text-muted-foreground text-sm">
-                                  ({tour.reviews})
+                            {/* Content */}
+                            <div className="p-5">
+                              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                                <MapPin className="h-4 w-4" />
+                                <span>{tour.city}</span>
+                                <span className="mx-1">•</span>
+                                <Clock className="h-4 w-4" />
+                                <span>
+                                  {tour.duration_days} {tour.duration_days === 1 ? t('common.day') : t('common.days')}
                                 </span>
                               </div>
-                              <div className="text-right">
-                                <span className="text-xs text-muted-foreground block">{t('common.from')}</span>
-                                <span className="text-lg font-bold text-terracotta">${tour.price_standard}</span>
+
+                              <h3 className="font-semibold text-foreground group-hover:text-terracotta transition-colors line-clamp-2 mb-3">
+                                {tour.name}
+                              </h3>
+
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-1">
+                                  <Star className="h-4 w-4 fill-accent text-accent" />
+                                  <span className="font-medium">{tour.rating}</span>
+                                  <span className="text-muted-foreground text-sm">
+                                    ({tour.reviews})
+                                  </span>
+                                </div>
+                                <div className="text-right">
+                                  <span className="text-xs text-muted-foreground block">{t('common.from')}</span>
+                                  <span className="text-lg font-bold text-terracotta">${tour.price_standard}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-20">
-                  <p className="text-muted-foreground text-lg">{t('common.noResults')}</p>
-                  <Button variant="outline" className="mt-4" onClick={clearFilters}>
-                    Clear Filters
-                  </Button>
-                </div>
-              )}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="empty"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-20 bg-card rounded-2xl border border-border"
+                  >
+                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Search className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <p className="text-foreground font-medium text-lg mb-2">No tours found</p>
+                    <p className="text-muted-foreground mb-6">{t('common.noResults')}</p>
+                    <Button variant="outline" onClick={clearFilters}>
+                      <X className="h-4 w-4 mr-2" />
+                      Clear Filters
+                    </Button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
