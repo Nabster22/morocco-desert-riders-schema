@@ -4,6 +4,8 @@ import { BarChart3, Users, MapPin, Calendar, TrendingUp, DollarSign, Package, Fi
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const revenueData = [
   { month: 'Jan', revenue: 12400 }, { month: 'Feb', revenue: 15800 }, { month: 'Mar', revenue: 18200 },
@@ -31,10 +33,14 @@ const AdminDashboard = () => {
           <div className="flex items-center gap-4">
             <Link to="/" className="font-display font-bold text-xl text-terracotta">MDR Admin</Link>
           </div>
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-4">
             <Link to="/admin" className="text-sm font-medium text-foreground">{t('admin.dashboard')}</Link>
             <Link to="/admin/tours" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.tours')}</Link>
             <Link to="/admin/bookings" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.bookings')}</Link>
+            <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
             <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Back to Site</Link>
           </nav>
         </div>

@@ -33,7 +33,12 @@
     "guest": "huésped",
     "reviews": "reseñas",
     "review": "reseña",
-    "noResults": "No se encontraron resultados"
+    "noResults": "No se encontraron resultados",
+    "theme": "Tema",
+    "toggleTheme": "Cambiar tema",
+    "lightMode": "Claro",
+    "darkMode": "Oscuro",
+    "systemMode": "Sistema"
   },
   "hero": {
     "badge": "Valorado 4.9/5 por más de 2,000 aventureros",
@@ -175,5 +180,12 @@
     "pastDate": "La fecha no puede ser en el pasado",
     "minGuests": "Mínimo 1 huésped requerido",
     "maxGuests": "Máximo {{max}} huéspedes permitidos"
+  },
+  "notFound": {
+    "title": "Perdido en el desierto",
+    "description": "La página que buscas ha desaparecido como un espejismo en el Sahara. Volvamos al camino.",
+    "backHome": "Volver al inicio",
+    "goBack": "Volver",
+    "suggestions": "O explora estos destinos populares:"
   }
 }
