@@ -1,0 +1,31 @@
+# ==============================================
+# Morocco Desert Riders API - Apache Configuration
+# ==============================================
+# Place this in the API subdomain root if using Apache as reverse proxy
+
+# Disable directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^\.env|package\.json|package-lock\.json|\.git">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# CORS Headers for API
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "https://yourdomain.com"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Authorization, Content-Type, Accept"
+    Header always set Access-Control-Max-Age "86400"
+</IfModule>
+
+# Handle preflight requests
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Proxy to Node.js (if using Apache as reverse proxy)
+# Uncomment and configure if needed:
+# ProxyPass / http://localhost:3000/
+# ProxyPassReverse / http://localhost:3000/
