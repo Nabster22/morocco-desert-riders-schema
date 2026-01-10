@@ -33,7 +33,12 @@
     "guest": "invité",
     "reviews": "avis",
     "review": "avis",
-    "noResults": "Aucun résultat trouvé"
+    "noResults": "Aucun résultat trouvé",
+    "theme": "Thème",
+    "toggleTheme": "Changer le thème",
+    "lightMode": "Clair",
+    "darkMode": "Sombre",
+    "systemMode": "Système"
   },
   "hero": {
     "badge": "Noté 4.9/5 par plus de 2 000 aventuriers",
@@ -175,5 +180,12 @@
     "pastDate": "La date ne peut pas être dans le passé",
     "minGuests": "Minimum 1 invité requis",
     "maxGuests": "Maximum {{max}} invités autorisés"
+  },
+  "notFound": {
+    "title": "Perdu dans le désert",
+    "description": "La page que vous recherchez a disparu comme un mirage dans le Sahara. Retrouvons votre chemin.",
+    "backHome": "Retour à l'accueil",
+    "goBack": "Retour",
+    "suggestions": "Ou explorez ces destinations populaires:"
   }
 }

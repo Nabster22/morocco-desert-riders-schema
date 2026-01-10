@@ -33,7 +33,12 @@
     "guest": "guest",
     "reviews": "reviews",
     "review": "review",
-    "noResults": "No results found"
+    "noResults": "No results found",
+    "theme": "Theme",
+    "toggleTheme": "Toggle theme",
+    "lightMode": "Light",
+    "darkMode": "Dark",
+    "systemMode": "System"
   },
   "hero": {
     "badge": "Rated 4.9/5 by 2,000+ adventurers",
@@ -175,5 +180,12 @@
     "pastDate": "Date cannot be in the past",
     "minGuests": "Minimum 1 guest required",
     "maxGuests": "Maximum {{max}} guests allowed"
+  },
+  "notFound": {
+    "title": "Lost in the Desert",
+    "description": "The page you're looking for has vanished like a mirage in the Sahara. Let's get you back on track.",
+    "backHome": "Back to Home",
+    "goBack": "Go Back",
+    "suggestions": "Or explore these popular destinations:"
   }
 }

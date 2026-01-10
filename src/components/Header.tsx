@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronRight } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -99,8 +100,15 @@ const Header = () => {
               })}
             </nav>
 
-            {/* CTA & Language */}
-            <div className="hidden md:flex items-center gap-3">
+            {/* CTA & Language & Theme */}
+            <div className="hidden md:flex items-center gap-2">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.25 }}
+              >
+                <ThemeToggle />
+              </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -233,7 +241,11 @@ const Header = () => {
                   transition={{ delay: 0.4 }}
                 >
                   <div className="flex items-center justify-between px-4">
-                    <span className="text-sm text-muted-foreground">Language</span>
+                    <span className="text-sm text-muted-foreground">{t('common.theme')}</span>
+                    <ThemeToggle />
+                  </div>
+                  <div className="flex items-center justify-between px-4">
+                    <span className="text-sm text-muted-foreground">{t('common.language')}</span>
                     <LanguageSwitcher />
                   </div>
                   <Link to="/login" onClick={() => setIsMenuOpen(false)}>

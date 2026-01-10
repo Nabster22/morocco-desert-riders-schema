@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, Eye, FileDown, Filter, Calendar, User, Mail, Phone } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -126,10 +128,14 @@ const AdminBookings = () => {
           <div className="flex items-center gap-4">
             <Link to="/" className="font-display font-bold text-xl text-terracotta">MDR Admin</Link>
           </div>
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-4">
             <Link to="/admin" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.dashboard')}</Link>
             <Link to="/admin/tours" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.tours')}</Link>
             <Link to="/admin/bookings" className="text-sm font-medium text-foreground">{t('admin.bookings')}</Link>
+            <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
             <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Back to Site</Link>
           </nav>
         </div>
