@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email'),
@@ -34,10 +35,15 @@ type RegisterData = z.infer<typeof registerSchema>;
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
+  const { login, register, isAuthenticated, isAdmin } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Redirect if already logged in
+  const from = (location.state as any)?.from?.pathname || '/';
 
   const loginForm = useForm<LoginData>({ 
     resolver: zodResolver(loginSchema),
@@ -51,21 +57,38 @@ const Login = () => {
 
   const onLogin = async (data: LoginData) => {
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    localStorage.setItem('user', JSON.stringify({ email: data.email, role: data.email.includes('admin') ? 'admin' : 'client' }));
-    toast({ title: 'Welcome back!', description: 'Login successful' });
-    setIsLoading(false);
-    navigate(data.email.includes('admin') ? '/admin' : '/');
+    try {
+      await login(data.email, data.password);
+      toast({ title: 'Welcome back!', description: 'Login successful' });
+      // Check role and redirect accordingly
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      navigate(user.role === 'admin' ? '/admin' : from);
+    } catch (error: any) {
+      toast({ 
+        title: 'Login failed', 
+        description: error.message || 'Invalid credentials', 
+        variant: 'destructive' 
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onRegister = async (data: RegisterData) => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    localStorage.setItem('user', JSON.stringify({ name: data.name, email: data.email, role: 'client' }));
-    toast({ title: 'Account created!', description: 'Welcome to Morocco Desert Riders' });
-    setIsLoading(false);
-    navigate('/');
+    try {
+      await register({ name: data.name, email: data.email, password: data.password });
+      toast({ title: 'Account created!', description: 'Welcome to Morocco Desert Riders' });
+      navigate('/');
+    } catch (error: any) {
+      toast({ 
+        title: 'Registration failed', 
+        description: error.message || 'Could not create account', 
+        variant: 'destructive' 
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const formVariants = {
