@@ -90,17 +90,32 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-primary-foreground/50 text-sm">
-            © 2025 Morocco Desert Riders. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
-              Terms of Service
-            </a>
+        <div className="border-t border-primary-foreground/10 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-primary-foreground/50 text-sm">
+              © 2025 Morocco Desert Riders. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <a href="#" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
+                Terms of Service
+              </a>
+            </div>
+          </div>
+          <div className="text-center mt-6 pt-6 border-t border-primary-foreground/5">
+            <p className="text-primary-foreground/40 text-xs">
+              Made with ♥ by{" "}
+              <a 
+                href="https://webguys.agency/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-terracotta hover:text-terracotta/80 transition-colors font-medium"
+              >
+                Webguys
+              </a>
+            </p>
           </div>
         </div>
       </div>
