@@ -1,15 +1,19 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Tours", href: "#tours" },
-    { name: "Destinations", href: "#destinations" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: t('common.tours'), href: "/tours" },
+    { name: t('common.destinations'), href: "#destinations" },
+    { name: t('common.about'), href: "#about" },
+    { name: t('common.contact'), href: "#contact" },
   ];
 
   return (
@@ -42,11 +46,15 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA & Language */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="hero" size="lg">
-              Book Now
-            </Button>
+            <LanguageSwitcher />
+            <Link to="/login">
+              <Button variant="outline" size="sm">{t('common.login')}</Button>
+            </Link>
+            <Link to="/tours">
+              <Button variant="hero" size="lg">{t('common.bookNow')}</Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
