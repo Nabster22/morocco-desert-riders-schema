@@ -1,12 +1,17 @@
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { BarChart3, Users, MapPin, Calendar, TrendingUp, DollarSign, Package, FileDown } from 'lucide-react';
+import { BarChart3, Users, MapPin, Calendar, TrendingUp, DollarSign, Package, FileDown, Loader2, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Skeleton } from '@/components/ui/skeleton';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useBookings, useExportBookingsCSV, useExportBookingsExcel } from '@/hooks/useApi';
 
+// Sample data for charts (would come from API)
 const revenueData = [
   { month: 'Jan', revenue: 12400 }, { month: 'Feb', revenue: 15800 }, { month: 'Mar', revenue: 18200 },
   { month: 'Apr', revenue: 22100 }, { month: 'May', revenue: 28500 }, { month: 'Jun', revenue: 32000 },
@@ -17,14 +22,23 @@ const bookingsByCity = [
   { name: 'Agadir', value: 18, color: '#E9C46A' }, { name: 'Dakhla', value: 12, color: '#2A9D8F' },
 ];
 
-const recentBookings = [
-  { id: 1, tour: 'Sahara Sunset Camel Trek', customer: 'Sarah M.', date: '2024-12-20', amount: 598, status: 'confirmed' },
-  { id: 2, tour: 'Quad Biking Adventure', customer: 'James K.', date: '2024-12-19', amount: 178, status: 'pending' },
-  { id: 3, tour: 'Luxury Desert Camp', customer: 'Marie L.', date: '2024-12-18', amount: 1198, status: 'confirmed' },
-];
-
 const AdminDashboard = () => {
   const { t } = useTranslation();
+  
+  const { data: bookingsResponse, isLoading, isError } = useBookings({ limit: 5 });
+  const exportCSV = useExportBookingsCSV();
+  const exportExcel = useExportBookingsExcel();
+
+  const bookings = bookingsResponse?.data || [];
+  const pagination = bookingsResponse?.pagination;
+
+  // Calculate stats from bookings data
+  const stats = {
+    totalRevenue: bookings.reduce((sum: number, b: any) => sum + (b.total_price || 0), 0),
+    totalBookings: pagination?.total || bookings.length,
+    confirmedBookings: bookings.filter((b: any) => b.status === 'confirmed').length,
+    pendingBookings: bookings.filter((b: any) => b.status === 'pending').length,
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,10 +64,33 @@ const AdminDashboard = () => {
         <div className="flex items-center justify-between mb-8">
           <h1 className="font-display text-3xl font-bold">{t('admin.dashboard')}</h1>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm"><FileDown className="h-4 w-4 mr-2" />{t('admin.exportCSV')}</Button>
-            <Button variant="outline" size="sm"><FileDown className="h-4 w-4 mr-2" />{t('admin.exportExcel')}</Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => exportCSV.mutate({})}
+              disabled={exportCSV.isPending}
+            >
+              {exportCSV.isPending ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <FileDown className="h-4 w-4 mr-2" />}
+              {t('admin.exportCSV')}
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => exportExcel.mutate({})}
+              disabled={exportExcel.isPending}
+            >
+              {exportExcel.isPending ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <FileDown className="h-4 w-4 mr-2" />}
+              {t('admin.exportExcel')}
+            </Button>
           </div>
         </div>
+
+        {isError && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>Failed to load dashboard data. Please try again.</AlertDescription>
+          </Alert>
+        )}
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -62,7 +99,11 @@ const AdminDashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">{t('admin.totalRevenue')}</p>
-                  <p className="text-3xl font-bold">$129,000</p>
+                  {isLoading ? (
+                    <Skeleton className="h-8 w-24 mt-1" />
+                  ) : (
+                    <p className="text-3xl font-bold">${stats.totalRevenue.toLocaleString()}</p>
+                  )}
                   <p className="text-sm text-green-600 flex items-center gap-1"><TrendingUp className="h-4 w-4" />+12.5%</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center">
@@ -76,7 +117,11 @@ const AdminDashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">{t('admin.totalBookings')}</p>
-                  <p className="text-3xl font-bold">384</p>
+                  {isLoading ? (
+                    <Skeleton className="h-8 w-16 mt-1" />
+                  ) : (
+                    <p className="text-3xl font-bold">{stats.totalBookings}</p>
+                  )}
                   <p className="text-sm text-green-600 flex items-center gap-1"><TrendingUp className="h-4 w-4" />+8.2%</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
@@ -89,9 +134,13 @@ const AdminDashboard = () => {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t('admin.totalUsers')}</p>
-                  <p className="text-3xl font-bold">1,247</p>
-                  <p className="text-sm text-green-600 flex items-center gap-1"><TrendingUp className="h-4 w-4" />+5.1%</p>
+                  <p className="text-sm text-muted-foreground">Confirmed</p>
+                  {isLoading ? (
+                    <Skeleton className="h-8 w-16 mt-1" />
+                  ) : (
+                    <p className="text-3xl font-bold text-green-600">{stats.confirmedBookings}</p>
+                  )}
+                  <p className="text-sm text-muted-foreground">Bookings</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">
                   <Users className="h-6 w-6 text-green-500" />
@@ -103,12 +152,16 @@ const AdminDashboard = () => {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t('admin.totalTours')}</p>
-                  <p className="text-3xl font-bold">35</p>
-                  <p className="text-sm text-muted-foreground">Active</p>
+                  <p className="text-sm text-muted-foreground">Pending</p>
+                  {isLoading ? (
+                    <Skeleton className="h-8 w-16 mt-1" />
+                  ) : (
+                    <p className="text-3xl font-bold text-yellow-600">{stats.pendingBookings}</p>
+                  )}
+                  <p className="text-sm text-muted-foreground">Bookings</p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center">
-                  <Package className="h-6 w-6 text-purple-500" />
+                <div className="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                  <Package className="h-6 w-6 text-yellow-500" />
                 </div>
               </div>
             </CardContent>
@@ -148,7 +201,14 @@ const AdminDashboard = () => {
 
         {/* Recent Bookings */}
         <Card>
-          <CardHeader><CardTitle>{t('admin.recentBookings')}</CardTitle></CardHeader>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle>{t('admin.recentBookings')}</CardTitle>
+              <Link to="/admin/bookings">
+                <Button variant="outline" size="sm">View All</Button>
+              </Link>
+            </div>
+          </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -160,19 +220,42 @@ const AdminDashboard = () => {
                   <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">Status</th>
                 </tr></thead>
                 <tbody>
-                  {recentBookings.map((booking) => (
-                    <tr key={booking.id} className="border-b border-border/50 hover:bg-muted/50">
-                      <td className="py-3 px-4 font-medium">{booking.tour}</td>
-                      <td className="py-3 px-4 text-muted-foreground">{booking.customer}</td>
-                      <td className="py-3 px-4 text-muted-foreground">{booking.date}</td>
-                      <td className="py-3 px-4 font-medium">${booking.amount}</td>
-                      <td className="py-3 px-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${booking.status === 'confirmed' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                          {booking.status}
-                        </span>
+                  {isLoading ? (
+                    [1, 2, 3].map((i) => (
+                      <tr key={i} className="border-b border-border/50">
+                        <td className="py-3 px-4"><Skeleton className="h-4 w-32" /></td>
+                        <td className="py-3 px-4"><Skeleton className="h-4 w-24" /></td>
+                        <td className="py-3 px-4"><Skeleton className="h-4 w-20" /></td>
+                        <td className="py-3 px-4"><Skeleton className="h-4 w-16" /></td>
+                        <td className="py-3 px-4"><Skeleton className="h-6 w-20 rounded-full" /></td>
+                      </tr>
+                    ))
+                  ) : bookings.length > 0 ? (
+                    bookings.slice(0, 5).map((booking: any) => (
+                      <tr key={booking.id} className="border-b border-border/50 hover:bg-muted/50">
+                        <td className="py-3 px-4 font-medium">{booking.tour_name || 'Tour'}</td>
+                        <td className="py-3 px-4 text-muted-foreground">{booking.user_name || booking.user_email}</td>
+                        <td className="py-3 px-4 text-muted-foreground">{new Date(booking.start_date).toLocaleDateString()}</td>
+                        <td className="py-3 px-4 font-medium">${booking.total_price}</td>
+                        <td className="py-3 px-4">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            booking.status === 'confirmed' ? 'bg-green-100 text-green-700' : 
+                            booking.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                            booking.status === 'completed' ? 'bg-blue-100 text-blue-700' :
+                            'bg-red-100 text-red-700'
+                          }`}>
+                            {booking.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={5} className="py-8 text-center text-muted-foreground">
+                        No bookings found
                       </td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>
