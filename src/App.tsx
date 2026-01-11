@@ -14,11 +14,14 @@ import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminTours from "./pages/admin/Tours";
 import AdminBookings from "./pages/admin/Bookings";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +41,8 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route 
               path="/profile" 
               element={
@@ -72,6 +77,7 @@ const App = () => (
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppButton />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
