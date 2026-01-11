@@ -42,6 +42,7 @@
   },
   "hero": {
     "badge": "Valorado 4.9/5 por más de 2,000 aventureros",
+    "rating": "Valorado 4.9/5 por más de 2,000 aventureros",
     "title": "Descubre la magia del",
     "titleHighlight": "Sahara de Marruecos",
     "subtitle": "Aventuras premium en el desierto a través de dunas doradas, antiguas kasbahs y campamentos estrellados. Experimenta Marruecos como nunca antes.",
@@ -53,6 +54,7 @@
   },
   "featured": {
     "badge": "Explorar Marruecos",
+    "explore": "Explorar Marruecos",
     "title": "Aventuras destacadas en el desierto",
     "subtitle": "Experiencias seleccionadas desde caminatas en camello hasta aventuras en quad, cada una diseñada para crear recuerdos inolvidables.",
     "viewAll": "Ver todos los tours"
@@ -91,7 +93,11 @@
     "popularity": "Más populares",
     "allCities": "Todas las ciudades",
     "allCategories": "Todas las categorías",
-    "allDurations": "Todas las duraciones"
+    "allDurations": "Todas las duraciones",
+    "from": "Desde",
+    "person": "persona",
+    "maxGuests": "Máx 12",
+    "viewDetails": "Ver detalles"
   },
   "booking": {
     "title": "Reserva tu aventura",
@@ -212,5 +218,133 @@
     "backHome": "Volver al inicio",
     "goBack": "Volver",
     "suggestions": "O explora estos destinos populares:"
+  },
+  "about": {
+    "heroTitle": "Nuestra Historia",
+    "heroSubtitle": "Desde 2008, hemos compartido la magia del Sahara marroquí con aventureros de todo el mundo.",
+    "happyTravelers": "Viajeros felices",
+    "uniqueTours": "Tours únicos",
+    "yearsExperience": "Años de experiencia",
+    "averageRating": "Calificación promedio",
+    "ourJourney": "Nuestro viaje",
+    "journeyTitle": "De sueños del desierto a realidad",
+    "story1": "Morocco Desert Riders nació de un sueño simple: compartir la belleza impresionante del Sahara marroquí con el mundo. Fundada en 2008 en Dakhla, nuestra empresa comenzó con solo dos Land Rovers y una pasión inquebrantable por la aventura.",
+    "story2": "Hoy, nos hemos convertido en uno de los operadores de tours del desierto más confiables de Marruecos, pero nuestros valores fundamentales permanecen sin cambios. Creemos en experiencias auténticas, turismo sostenible y crear recuerdos que duran toda la vida.",
+    "story3": "Cada tour que ofrecemos está cuidadosamente diseñado para mostrar lo mejor de Marruecos: desde las dunas doradas de Erg Chebbi hasta las impresionantes lagunas de Dakhla, desde los pueblos bereberes tradicionales hasta los campamentos de lujo bajo las estrellas.",
+    "whatWeStandFor": "Lo que defendemos",
+    "ourValues": "Nuestros valores",
+    "values": {
+      "passion": {
+        "title": "Pasión por la aventura",
+        "description": "Vivimos y respiramos el desierto. Nuestro equipo está formado por guías locales experimentados que conocen cada duna, cada oasis y cada joya oculta del Sahara marroquí."
+      },
+      "safety": {
+        "title": "La seguridad primero",
+        "description": "Tu seguridad es nuestra prioridad. Todos nuestros vehículos se mantienen regularmente y nuestros guías están capacitados en primeros auxilios y respuesta de emergencia."
+      },
+      "sustainability": {
+        "title": "Turismo sostenible",
+        "description": "Estamos comprometidos a preservar la belleza del Sahara para las generaciones futuras. Practicamos turismo responsable y apoyamos a las comunidades locales."
+      },
+      "authentic": {
+        "title": "Experiencias auténticas",
+        "description": "Ofrecemos experiencias genuinas marroquíes, desde la hospitalidad bereber tradicional hasta campamentos auténticos en el desierto bajo las estrellas."
+      }
+    },
+    "meetTheTeam": "Conoce al equipo",
+    "ourExperts": "Nuestros expertos del desierto",
+    "team": {
+      "founder": "Fundador y guía principal",
+      "operations": "Gerente de operaciones",
+      "headGuide": "Guía principal del desierto",
+      "ahmedBio": "Nacido en el Sahara, Ahmed ha guiado tours del desierto durante más de 20 años. Su pasión por compartir la cultura marroquí es contagiosa.",
+      "fatimaBio": "Con más de 10 años en turismo, Fatima asegura que cada tour funcione sin problemas y que cada huésped se sienta como en casa.",
+      "hassanBio": "Bereber de nacimiento, Hassan conoce el desierto como la palma de su mano. Sus historias hacen que cada viaje sea mágico."
+    }
+  },
+  "contact": {
+    "heroTitle": "Contáctanos",
+    "heroSubtitle": "¿Tienes preguntas? Nos encantaría saber de ti. Envíanos un mensaje y te responderemos lo antes posible.",
+    "contactInfo": "Información de contacto",
+    "sendMessage": "Envíanos un mensaje",
+    "address": "Dirección",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "hours": "Horario de atención",
+    "hoursContent": "Lun - Sáb: 8:00 AM - 8:00 PM\nDom: 9:00 AM - 6:00 PM",
+    "thankYou": "¡Gracias!",
+    "successMessage": "¡Mensaje enviado con éxito! Te responderemos pronto.",
+    "successDescription": "Tu mensaje ha sido enviado. Te responderemos en 24 horas.",
+    "sendAnother": "Enviar otro mensaje",
+    "subjects": {
+      "general": "Consulta general",
+      "booking": "Pregunta de reserva",
+      "custom": "Solicitud de tour personalizado",
+      "support": "Soporte al cliente",
+      "partnership": "Oportunidad de asociación"
+    },
+    "form": {
+      "name": "Nombre completo",
+      "namePlaceholder": "Tu nombre",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "phone": "Teléfono",
+      "phonePlaceholder": "+212 XXX XXX XXX",
+      "subject": "Asunto",
+      "subjectPlaceholder": "Selecciona un asunto",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntanos sobre tu consulta...",
+      "send": "Enviar mensaje",
+      "sending": "Enviando..."
+    }
+  },
+  "faq": {
+    "heroTitle": "Preguntas frecuentes",
+    "heroSubtitle": "Encuentra respuestas a preguntas comunes sobre nuestros tours, proceso de reserva y consejos de viaje.",
+    "stillQuestions": "¿Aún tienes preguntas?",
+    "contactUs": "¿No encuentras la respuesta? Nuestro equipo amigable está aquí para ayudar.",
+    "contactButton": "Contáctanos",
+    "categories": {
+      "booking": "Reservas",
+      "tours": "Tours y experiencias",
+      "safety": "Seguridad y salud",
+      "logistics": "Logística y transporte"
+    },
+    "booking": {
+      "q1": "¿Cómo reservo un tour?",
+      "a1": "Puedes reservar un tour directamente en nuestro sitio web seleccionando tu tour preferido, eligiendo tus fechas y completando el formulario de reserva. También puedes contactarnos por teléfono o correo electrónico.",
+      "q2": "¿Cuál es su política de cancelación?",
+      "a2": "Ofrecemos cancelación gratuita hasta 7 días antes de la fecha de inicio. Las cancelaciones entre 3-7 días reciben un reembolso del 50%. Las cancelaciones con menos de 3 días de anticipación no son reembolsables.",
+      "q3": "¿Puedo modificar mi reserva?",
+      "a3": "Sí, puedes modificar tu reserva hasta 48 horas antes del tour, sujeto a disponibilidad. Pueden aplicarse ajustes de precio.",
+      "q4": "¿Qué métodos de pago aceptan?",
+      "a4": "Aceptamos las principales tarjetas de crédito (Visa, MasterCard, American Express), PayPal y transferencias bancarias."
+    },
+    "tours": {
+      "q1": "¿Qué debo empacar para un tour del desierto?",
+      "a1": "Recomendamos ropa cómoda en capas, protector solar, gafas de sol, sombrero, zapatos cómodos para caminar, chaqueta abrigada para las noches y cámara.",
+      "q2": "¿Los tours son adecuados para niños?",
+      "a2": "La mayoría de nuestros tours son familiares. Algunas actividades como el quad tienen restricciones de edad (mínimo 16 años para conducir).",
+      "q3": "¿Qué está incluido en el precio?",
+      "a3": "Nuestros precios típicamente incluyen: transporte en 4x4, alojamiento, comidas, tours guiados y todas las actividades mencionadas. Los gastos personales y seguro de viaje generalmente no están incluidos.",
+      "q4": "¿Cuál es la diferencia entre Standard y Premium?",
+      "a4": "Los paquetes Premium ofrecen alojamientos mejorados, vehículos privados, comidas gourmet y atención más personalizada."
+    },
+    "safety": {
+      "q1": "¿Es seguro viajar en el desierto marroquí?",
+      "a1": "Sí, viajar al desierto con un operador experimentado como nosotros es muy seguro. Todos nuestros guías están certificados, nuestros vehículos se mantienen regularmente y llevamos equipos de comunicación satelital.",
+      "q2": "¿Qué pasa si tengo restricciones dietéticas?",
+      "a2": "Acomodamos varios requisitos dietéticos: vegetariano, vegano, halal, sin gluten y alergias. Infórmanos al reservar.",
+      "q3": "¿Necesito vacunas?",
+      "a3": "No se requieren vacunas específicas para Marruecos, pero recomendamos estar al día con las vacunas de rutina. Consulta a tu médico antes de viajar."
+    },
+    "logistics": {
+      "q1": "¿Ofrecen traslado al aeropuerto?",
+      "a1": "Sí, ofrecemos traslados desde los principales aeropuertos marroquíes: Marrakech, Fez, Casablanca, Agadir y Dakhla.",
+      "q2": "¿Qué tipo de vehículos usan?",
+      "a2": "Usamos Toyota Land Cruiser 4x4 modernos y bien mantenidos equipados para condiciones del desierto, con aire acondicionado y equipos de comunicación.",
+      "q3": "¿Puedo solicitar un tour privado/personalizado?",
+      "a3": "¡Absolutamente! Nos especializamos en crear itinerarios personalizados adaptados a tus intereses, cronograma y presupuesto. Contáctanos para una cotización personalizada."
+    }
   }
 }

@@ -212,11 +212,54 @@
     "minGuests": "Mindestens 1 Gast erforderlich",
     "maxGuests": "Maximal {{max}} Gäste erlaubt"
   },
-  "notFound": {
-    "title": "In der Wüste verlaufen",
-    "description": "Die gesuchte Seite ist wie eine Fata Morgana in der Sahara verschwunden. Lassen Sie uns Sie zurück auf den richtigen Weg bringen.",
-    "backHome": "Zur Startseite",
-    "goBack": "Zurück",
-    "suggestions": "Oder entdecken Sie beliebte Reiseziele:"
+  "about": {
+    "heroTitle": "Unsere Geschichte",
+    "heroSubtitle": "Seit 2008 teilen wir die Magie der marokkanischen Sahara mit Abenteurern aus aller Welt.",
+    "happyTravelers": "Zufriedene Reisende",
+    "uniqueTours": "Einzigartige Touren",
+    "yearsExperience": "Jahre Erfahrung",
+    "averageRating": "Durchschnittsbewertung",
+    "ourJourney": "Unsere Reise",
+    "journeyTitle": "Vom Wüstentraum zur Realität",
+    "whatWeStandFor": "Wofür wir stehen",
+    "ourValues": "Unsere Werte",
+    "meetTheTeam": "Das Team",
+    "ourExperts": "Unsere Wüstenexperten"
+  },
+  "contact": {
+    "heroTitle": "Kontaktieren Sie uns",
+    "heroSubtitle": "Fragen? Wir freuen uns von Ihnen zu hören. Senden Sie uns eine Nachricht und wir antworten so schnell wie möglich.",
+    "contactInfo": "Kontaktinformationen",
+    "sendMessage": "Nachricht senden",
+    "address": "Adresse",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "hours": "Öffnungszeiten",
+    "hoursContent": "Mo - Sa: 8:00 - 20:00\nSo: 9:00 - 18:00",
+    "thankYou": "Vielen Dank!",
+    "successMessage": "Nachricht erfolgreich gesendet! Wir melden uns bald.",
+    "successDescription": "Ihre Nachricht wurde gesendet. Wir antworten innerhalb von 24 Stunden.",
+    "sendAnother": "Weitere Nachricht senden",
+    "form": {
+      "name": "Vollständiger Name",
+      "namePlaceholder": "Ihr Name",
+      "email": "E-Mail",
+      "emailPlaceholder": "ihre@email.de",
+      "phone": "Telefon",
+      "phonePlaceholder": "+212 XXX XXX XXX",
+      "subject": "Betreff",
+      "subjectPlaceholder": "Betreff auswählen",
+      "message": "Nachricht",
+      "messagePlaceholder": "Erzählen Sie uns von Ihrer Anfrage...",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet..."
+    }
+  },
+  "faq": {
+    "heroTitle": "Häufig gestellte Fragen",
+    "heroSubtitle": "Antworten auf häufige Fragen zu unseren Touren, Buchungen und Reisetipps.",
+    "stillQuestions": "Noch Fragen?",
+    "contactUs": "Keine Antwort gefunden? Unser Team hilft Ihnen gerne.",
+    "contactButton": "Kontakt aufnehmen"
   }
 }

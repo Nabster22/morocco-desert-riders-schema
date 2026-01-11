@@ -42,6 +42,7 @@
   },
   "hero": {
     "badge": "Noté 4.9/5 par plus de 2 000 aventuriers",
+    "rating": "Noté 4.9/5 par plus de 2 000 aventuriers",
     "title": "Découvrez la magie du",
     "titleHighlight": "Sahara Marocain",
     "subtitle": "Aventures désertiques premium à travers les dunes dorées, les anciennes kasbahs et les camps étoilés. Vivez le Maroc comme jamais auparavant.",
@@ -53,6 +54,7 @@
   },
   "featured": {
     "badge": "Explorer le Maroc",
+    "explore": "Explorer le Maroc",
     "title": "Aventures désertiques en vedette",
     "subtitle": "Expériences triées sur le volet, des randonnées à dos de chameau aux aventures en quad, chacune conçue pour créer des souvenirs inoubliables.",
     "viewAll": "Voir tous les circuits"
@@ -91,7 +93,11 @@
     "popularity": "Plus populaires",
     "allCities": "Toutes les villes",
     "allCategories": "Toutes les catégories",
-    "allDurations": "Toutes les durées"
+    "allDurations": "Toutes les durées",
+    "from": "À partir de",
+    "person": "personne",
+    "maxGuests": "Max 12",
+    "viewDetails": "Voir les détails"
   },
   "booking": {
     "title": "Réservez votre aventure",
@@ -212,5 +218,133 @@
     "backHome": "Retour à l'accueil",
     "goBack": "Retour",
     "suggestions": "Ou explorez ces destinations populaires:"
+  },
+  "about": {
+    "heroTitle": "Notre Histoire",
+    "heroSubtitle": "Depuis 2008, nous partageons la magie du Sahara marocain avec des aventuriers du monde entier.",
+    "happyTravelers": "Voyageurs satisfaits",
+    "uniqueTours": "Circuits uniques",
+    "yearsExperience": "Années d'expérience",
+    "averageRating": "Note moyenne",
+    "ourJourney": "Notre parcours",
+    "journeyTitle": "Des rêves du désert à la réalité",
+    "story1": "Morocco Desert Riders est né d'un rêve simple : partager la beauté époustouflante du Sahara marocain avec le monde. Fondée en 2008 à Dakhla, notre entreprise a démarré avec seulement deux Land Rovers et une passion inébranlable pour l'aventure.",
+    "story2": "Aujourd'hui, nous sommes devenus l'un des opérateurs de circuits désertiques les plus fiables du Maroc, mais nos valeurs fondamentales restent inchangées. Nous croyons en des expériences authentiques, un tourisme durable et la création de souvenirs qui durent toute une vie.",
+    "story3": "Chaque circuit que nous proposons est soigneusement conçu pour mettre en valeur le meilleur du Maroc – des dunes dorées de l'Erg Chebbi aux superbes lagons de Dakhla, des villages berbères traditionnels aux camps de luxe sous les étoiles.",
+    "whatWeStandFor": "Ce que nous défendons",
+    "ourValues": "Nos valeurs",
+    "values": {
+      "passion": {
+        "title": "Passion pour l'aventure",
+        "description": "Nous vivons et respirons le désert. Notre équipe est composée de guides locaux expérimentés qui connaissent chaque dune, chaque oasis et chaque joyau caché du Sahara marocain."
+      },
+      "safety": {
+        "title": "La sécurité avant tout",
+        "description": "Votre sécurité est notre priorité. Tous nos véhicules sont régulièrement entretenus et nos guides sont formés aux premiers secours et aux interventions d'urgence."
+      },
+      "sustainability": {
+        "title": "Tourisme durable",
+        "description": "Nous nous engageons à préserver la beauté du Sahara pour les générations futures. Nous pratiquons un tourisme responsable et soutenons les communautés locales."
+      },
+      "authentic": {
+        "title": "Expériences authentiques",
+        "description": "Nous offrons de véritables expériences marocaines, de l'hospitalité berbère traditionnelle aux camps désertiques authentiques sous les étoiles."
+      }
+    },
+    "meetTheTeam": "Rencontrez l'équipe",
+    "ourExperts": "Nos experts du désert",
+    "team": {
+      "founder": "Fondateur et guide principal",
+      "operations": "Directrice des opérations",
+      "headGuide": "Guide en chef du désert",
+      "ahmedBio": "Né dans le Sahara, Ahmed guide des circuits désertiques depuis plus de 20 ans. Sa passion pour le partage de la culture marocaine est contagieuse.",
+      "fatimaBio": "Avec plus de 10 ans dans le tourisme, Fatima veille à ce que chaque circuit se déroule sans accroc et que chaque invité se sente chez lui.",
+      "hassanBio": "Berbère de naissance, Hassan connaît le désert comme sa poche. Ses récits rendent chaque voyage magique."
+    }
+  },
+  "contact": {
+    "heroTitle": "Contactez-nous",
+    "heroSubtitle": "Des questions? Nous serions ravis de vous entendre. Envoyez-nous un message et nous vous répondrons dès que possible.",
+    "contactInfo": "Informations de contact",
+    "sendMessage": "Envoyez-nous un message",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "hours": "Heures d'ouverture",
+    "hoursContent": "Lun - Sam: 8h00 - 20h00\nDim: 9h00 - 18h00",
+    "thankYou": "Merci!",
+    "successMessage": "Message envoyé avec succès! Nous vous répondrons bientôt.",
+    "successDescription": "Votre message a été envoyé. Nous vous répondrons dans les 24 heures.",
+    "sendAnother": "Envoyer un autre message",
+    "subjects": {
+      "general": "Demande générale",
+      "booking": "Question de réservation",
+      "custom": "Demande de circuit personnalisé",
+      "support": "Support client",
+      "partnership": "Opportunité de partenariat"
+    },
+    "form": {
+      "name": "Nom complet",
+      "namePlaceholder": "Votre nom",
+      "email": "E-mail",
+      "emailPlaceholder": "votre@email.com",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+212 XXX XXX XXX",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Sélectionnez un sujet",
+      "message": "Message",
+      "messagePlaceholder": "Parlez-nous de votre demande...",
+      "send": "Envoyer le message",
+      "sending": "Envoi en cours..."
+    }
+  },
+  "faq": {
+    "heroTitle": "Questions fréquentes",
+    "heroSubtitle": "Trouvez des réponses aux questions courantes sur nos circuits, le processus de réservation et les conseils de voyage.",
+    "stillQuestions": "Encore des questions?",
+    "contactUs": "Vous ne trouvez pas la réponse? Notre équipe sympathique est là pour vous aider.",
+    "contactButton": "Nous contacter",
+    "categories": {
+      "booking": "Réservation",
+      "tours": "Circuits et expériences",
+      "safety": "Sécurité et santé",
+      "logistics": "Logistique et transport"
+    },
+    "booking": {
+      "q1": "Comment réserver un circuit?",
+      "a1": "Vous pouvez réserver un circuit directement sur notre site web en sélectionnant votre circuit préféré, en choisissant vos dates et en remplissant le formulaire de réservation. Vous pouvez également nous contacter par téléphone ou e-mail.",
+      "q2": "Quelle est votre politique d'annulation?",
+      "a2": "Nous offrons une annulation gratuite jusqu'à 7 jours avant la date de départ. Les annulations entre 3 et 7 jours reçoivent un remboursement de 50%. Les annulations moins de 3 jours avant ne sont pas remboursables.",
+      "q3": "Puis-je modifier ma réservation?",
+      "a3": "Oui, vous pouvez modifier votre réservation jusqu'à 48 heures avant le départ, sous réserve de disponibilité. Des ajustements de prix peuvent s'appliquer.",
+      "q4": "Quels modes de paiement acceptez-vous?",
+      "a4": "Nous acceptons les principales cartes de crédit (Visa, MasterCard, American Express), PayPal et les virements bancaires."
+    },
+    "tours": {
+      "q1": "Que dois-je emporter pour un circuit désertique?",
+      "a1": "Nous recommandons des vêtements confortables en couches, de la crème solaire, des lunettes de soleil, un chapeau, des chaussures de marche, une veste chaude pour les soirées et un appareil photo.",
+      "q2": "Les circuits conviennent-ils aux enfants?",
+      "a2": "La plupart de nos circuits sont adaptés aux familles. Certaines activités comme le quad ont des restrictions d'âge (minimum 16 ans pour conduire).",
+      "q3": "Qu'est-ce qui est inclus dans le prix?",
+      "a3": "Nos prix incluent généralement: transport en 4x4, hébergement, repas, visites guidées et toutes les activités mentionnées. Les dépenses personnelles et l'assurance voyage ne sont généralement pas incluses.",
+      "q4": "Quelle est la différence entre Standard et Premium?",
+      "a4": "Les forfaits Premium offrent des hébergements améliorés, des véhicules privés, des repas gastronomiques et une attention plus personnalisée."
+    },
+    "safety": {
+      "q1": "Est-il sûr de voyager dans le désert marocain?",
+      "a1": "Oui, le voyage dans le désert avec un opérateur expérimenté comme nous est très sûr. Tous nos guides sont certifiés, nos véhicules sont régulièrement entretenus et nous transportons des équipements de communication satellite.",
+      "q2": "Si j'ai des restrictions alimentaires?",
+      "a2": "Nous accommodons diverses exigences alimentaires: végétarien, végétalien, halal, sans gluten et allergies. Informez-nous lors de la réservation.",
+      "q3": "Ai-je besoin de vaccins?",
+      "a3": "Aucun vaccin spécifique n'est requis pour le Maroc, mais nous recommandons d'être à jour sur les vaccins de routine. Consultez votre médecin avant le voyage."
+    },
+    "logistics": {
+      "q1": "Proposez-vous un transfert aéroport?",
+      "a1": "Oui, nous proposons des transferts depuis les principaux aéroports marocains: Marrakech, Fès, Casablanca, Agadir et Dakhla.",
+      "q2": "Quel type de véhicules utilisez-vous?",
+      "a2": "Nous utilisons des Toyota Land Cruiser 4x4 modernes et bien entretenus équipés pour les conditions désertiques, avec climatisation et équipements de communication.",
+      "q3": "Puis-je demander un circuit privé/personnalisé?",
+      "a3": "Absolument! Nous sommes spécialisés dans la création d'itinéraires personnalisés adaptés à vos intérêts, votre calendrier et votre budget. Contactez-nous pour un devis personnalisé."
+    }
   }
 }

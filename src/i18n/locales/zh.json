@@ -212,11 +212,54 @@
     "minGuests": "至少需要1位客人",
     "maxGuests": "最多允许{{max}}位客人"
   },
-  "notFound": {
-    "title": "迷失在沙漠中",
-    "description": "您要找的页面如同撒哈拉沙漠中的海市蜃楼一样消失了。让我们帮您回到正轨。",
-    "backHome": "返回首页",
-    "goBack": "返回",
-    "suggestions": "或探索这些热门目的地："
+  "about": {
+    "heroTitle": "我们的故事",
+    "heroSubtitle": "自2008年以来，我们一直与来自世界各地的探险者分享摩洛哥撒哈拉的魔力。",
+    "happyTravelers": "满意的旅行者",
+    "uniqueTours": "独特旅程",
+    "yearsExperience": "年经验",
+    "averageRating": "平均评分",
+    "ourJourney": "我们的旅程",
+    "journeyTitle": "从沙漠梦想到现实",
+    "whatWeStandFor": "我们的理念",
+    "ourValues": "我们的价值观",
+    "meetTheTeam": "认识团队",
+    "ourExperts": "我们的沙漠专家"
+  },
+  "contact": {
+    "heroTitle": "联系我们",
+    "heroSubtitle": "有问题吗？我们很乐意听取您的意见。给我们发消息，我们会尽快回复。",
+    "contactInfo": "联系信息",
+    "sendMessage": "发送消息",
+    "address": "地址",
+    "phone": "电话",
+    "email": "邮箱",
+    "hours": "营业时间",
+    "hoursContent": "周一至周六：8:00 - 20:00\n周日：9:00 - 18:00",
+    "thankYou": "谢谢！",
+    "successMessage": "消息发送成功！我们会尽快回复您。",
+    "successDescription": "您的消息已发送。我们将在24小时内回复您。",
+    "sendAnother": "发送另一条消息",
+    "form": {
+      "name": "姓名",
+      "namePlaceholder": "您的姓名",
+      "email": "邮箱",
+      "emailPlaceholder": "your@email.com",
+      "phone": "电话",
+      "phonePlaceholder": "+212 XXX XXX XXX",
+      "subject": "主题",
+      "subjectPlaceholder": "选择主题",
+      "message": "消息",
+      "messagePlaceholder": "告诉我们您的需求...",
+      "send": "发送消息",
+      "sending": "发送中..."
+    }
+  },
+  "faq": {
+    "heroTitle": "常见问题",
+    "heroSubtitle": "查找有关我们旅程、预订流程和旅行建议的常见问题解答。",
+    "stillQuestions": "还有问题？",
+    "contactUs": "找不到答案？我们友好的团队随时为您提供帮助。",
+    "contactButton": "联系我们"
   }
 }
