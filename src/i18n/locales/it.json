@@ -212,6 +212,13 @@
     "minGuests": "Minimo 1 ospite richiesto",
     "maxGuests": "Massimo {{max}} ospiti consentiti"
   },
+  "notFound": {
+    "title": "Perso nel deserto",
+    "description": "La pagina che stai cercando è svanita come un miraggio nel Sahara. Torniamo sulla strada giusta.",
+    "backHome": "Torna alla home",
+    "goBack": "Indietro",
+    "suggestions": "Oppure esplora queste destinazioni popolari:"
+  },
   "about": {
     "heroTitle": "La nostra storia",
     "heroSubtitle": "Dal 2008, condividiamo la magia del Sahara marocchino con avventurieri di tutto il mondo.",
@@ -221,10 +228,39 @@
     "averageRating": "Valutazione media",
     "ourJourney": "Il nostro viaggio",
     "journeyTitle": "Dai sogni del deserto alla realtà",
+    "story1": "Morocco Desert Riders è nata da un sogno semplice: condividere la bellezza mozzafiato del Sahara marocchino con il mondo. Fondata nel 2008 a Dakhla, la nostra azienda è iniziata con solo due Land Rover e una passione incrollabile per l'avventura.",
+    "story2": "Oggi, siamo cresciuti fino a diventare uno degli operatori di tour nel deserto più affidabili del Marocco, ma i nostri valori fondamentali rimangono invariati. Crediamo in esperienze autentiche, turismo sostenibile e nella creazione di ricordi che durano tutta la vita.",
+    "story3": "Ogni tour che offriamo è accuratamente progettato per mostrare il meglio del Marocco – dalle dune dorate di Erg Chebbi alle splendide lagune di Dakhla, dai villaggi berberi tradizionali ai campi di lusso sotto le stelle.",
     "whatWeStandFor": "I nostri principi",
     "ourValues": "I nostri valori",
+    "values": {
+      "passion": {
+        "title": "Passione per l'avventura",
+        "description": "Viviamo e respiriamo il deserto. Il nostro team è composto da guide locali esperte che conoscono ogni duna, ogni oasi e ogni gemma nascosta del Sahara marocchino."
+      },
+      "safety": {
+        "title": "La sicurezza prima di tutto",
+        "description": "La tua sicurezza è la nostra priorità. Tutti i nostri veicoli sono regolarmente manutenuti e le nostre guide sono formate in primo soccorso e risposta alle emergenze."
+      },
+      "sustainability": {
+        "title": "Turismo sostenibile",
+        "description": "Ci impegniamo a preservare la bellezza del Sahara per le generazioni future. Pratichiamo turismo responsabile e supportiamo le comunità locali."
+      },
+      "authentic": {
+        "title": "Esperienze autentiche",
+        "description": "Offriamo genuine esperienze marocchine, dall'ospitalità berbera tradizionale ai campi nel deserto autentici sotto le stelle."
+      }
+    },
     "meetTheTeam": "Il team",
-    "ourExperts": "I nostri esperti del deserto"
+    "ourExperts": "I nostri esperti del deserto",
+    "team": {
+      "founder": "Fondatore e guida principale",
+      "operations": "Responsabile operazioni",
+      "headGuide": "Guida capo del deserto",
+      "ahmedBio": "Nato nel Sahara, Ahmed guida tour nel deserto da oltre 20 anni. La sua passione per condividere la cultura marocchina è contagiosa.",
+      "fatimaBio": "Con oltre 10 anni nel turismo, Fatima garantisce che ogni tour proceda senza intoppi e che ogni ospite si senta a casa.",
+      "hassanBio": "Berbero nativo, Hassan conosce il deserto come le sue tasche. I suoi racconti rendono ogni viaggio magico."
+    }
   },
   "contact": {
     "heroTitle": "Contattaci",
@@ -240,6 +276,13 @@
     "successMessage": "Messaggio inviato con successo! Ti risponderemo presto.",
     "successDescription": "Il tuo messaggio è stato inviato. Risponderemo entro 24 ore.",
     "sendAnother": "Invia un altro messaggio",
+    "subjects": {
+      "general": "Richiesta generale",
+      "booking": "Domanda sulla prenotazione",
+      "custom": "Richiesta tour personalizzato",
+      "support": "Assistenza clienti",
+      "partnership": "Opportunità di partnership"
+    },
     "form": {
       "name": "Nome completo",
       "namePlaceholder": "Il tuo nome",
@@ -260,6 +303,48 @@
     "heroSubtitle": "Trova risposte alle domande comuni sui nostri tour, prenotazioni e consigli di viaggio.",
     "stillQuestions": "Hai ancora domande?",
     "contactUs": "Non trovi la risposta? Il nostro team è qui per aiutarti.",
-    "contactButton": "Contattaci"
+    "contactButton": "Contattaci",
+    "categories": {
+      "booking": "Prenotazioni",
+      "tours": "Tour ed esperienze",
+      "safety": "Sicurezza e salute",
+      "logistics": "Logistica e trasporti"
+    },
+    "booking": {
+      "q1": "Come prenoto un tour?",
+      "a1": "Puoi prenotare un tour direttamente sul nostro sito web selezionando il tour preferito, scegliendo le date e compilando il modulo di prenotazione. In alternativa, puoi contattarci via telefono o email.",
+      "q2": "Qual è la vostra politica di cancellazione?",
+      "a2": "Offriamo cancellazione gratuita fino a 7 giorni prima della data di partenza. Le cancellazioni tra 3-7 giorni ricevono un rimborso del 50%. Le cancellazioni con meno di 3 giorni di preavviso non sono rimborsabili. Consigliamo un'assicurazione viaggio.",
+      "q3": "Posso modificare la prenotazione dopo la conferma?",
+      "a3": "Sì, puoi modificare la prenotazione fino a 48 ore prima dell'inizio del tour, soggetto a disponibilità. Le modifiche potrebbero comportare adeguamenti di prezzo.",
+      "q4": "Quali metodi di pagamento accettate?",
+      "a4": "Accettiamo le principali carte di credito (Visa, MasterCard, American Express), PayPal e bonifici bancari."
+    },
+    "tours": {
+      "q1": "Cosa devo portare per un tour nel deserto?",
+      "a1": "Consigliamo abbigliamento comodo e ampio a strati, poiché le temperature nel deserto variano significativamente. Essenziali: crema solare, occhiali da sole, cappello, scarpe comode da camminata, giacca calda per la sera, sciarpa per protezione da vento/sabbia e fotocamera.",
+      "q2": "I tour sono adatti ai bambini?",
+      "a2": "La maggior parte dei nostri tour è adatta alle famiglie. Alcune attività avventurose come il quad hanno restrizioni di età (minimo 16 anni per guidare).",
+      "q3": "Cosa è incluso nel prezzo del tour?",
+      "a3": "I nostri prezzi includono tipicamente: trasporto in veicoli 4x4 confortevoli, alloggio, pasti (colazione, pranzo e cena), tour guidati e tutte le attività menzionate. Le spese personali e l'assicurazione viaggio solitamente non sono incluse.",
+      "q4": "Qual è la differenza tra i pacchetti Standard e Premium?",
+      "a4": "I pacchetti Premium offrono alloggi migliorati (campi nel deserto di lusso), veicoli privati, pasti gourmet e attenzione più personalizzata."
+    },
+    "safety": {
+      "q1": "È sicuro viaggiare nel deserto marocchino?",
+      "a1": "Sì, viaggiare nel deserto con un operatore esperto come noi è molto sicuro. Tutte le nostre guide sono certificate, i veicoli sono regolarmente manutenuti e portiamo dispositivi di comunicazione satellitare per le emergenze.",
+      "q2": "E se ho restrizioni alimentari?",
+      "a2": "Ci adattiamo a varie esigenze alimentari: vegetariano, vegano, halal, senza glutine e allergie. Informaci al momento della prenotazione.",
+      "q3": "Ho bisogno di vaccinazioni per il Marocco?",
+      "a3": "Non sono richieste vaccinazioni specifiche per il Marocco, ma consigliamo di avere i vaccini di routine aggiornati. Consulta il tuo medico prima di viaggiare."
+    },
+    "logistics": {
+      "q1": "Offrite transfer dall'aeroporto?",
+      "a1": "Sì, offriamo transfer dai principali aeroporti marocchini: Marrakech, Fes, Casablanca, Agadir e Dakhla.",
+      "q2": "Che tipo di veicoli utilizzate?",
+      "a2": "Utilizziamo Toyota Land Cruiser 4x4 moderni e ben manutenuti, attrezzati per le condizioni del deserto, con aria condizionata e attrezzature di comunicazione.",
+      "q3": "Posso richiedere un tour privato/personalizzato?",
+      "a3": "Assolutamente! Siamo specializzati nella creazione di itinerari personalizzati su misura per i tuoi interessi, tempistiche e budget. Contattaci per un preventivo personalizzato."
+    }
   }
 }

@@ -212,6 +212,13 @@
     "minGuests": "Mindestens 1 Gast erforderlich",
     "maxGuests": "Maximal {{max}} Gäste erlaubt"
   },
+  "notFound": {
+    "title": "In der Wüste verloren",
+    "description": "Die gesuchte Seite ist wie eine Fata Morgana in der Sahara verschwunden. Lassen Sie uns den Weg zurückfinden.",
+    "backHome": "Zur Startseite",
+    "goBack": "Zurück",
+    "suggestions": "Oder erkunden Sie diese beliebten Ziele:"
+  },
   "about": {
     "heroTitle": "Unsere Geschichte",
     "heroSubtitle": "Seit 2008 teilen wir die Magie der marokkanischen Sahara mit Abenteurern aus aller Welt.",
@@ -221,10 +228,39 @@
     "averageRating": "Durchschnittsbewertung",
     "ourJourney": "Unsere Reise",
     "journeyTitle": "Vom Wüstentraum zur Realität",
+    "story1": "Morocco Desert Riders wurde aus einem einfachen Traum geboren: Die atemberaubende Schönheit der marokkanischen Sahara mit der Welt zu teilen. 2008 in Dakhla gegründet, begann unser Unternehmen mit nur zwei Land Rovern und einer unerschütterlichen Leidenschaft für Abenteuer.",
+    "story2": "Heute sind wir zu einem der vertrauenswürdigsten Wüstentour-Anbieter Marokkos gewachsen, aber unsere Grundwerte bleiben unverändert. Wir glauben an authentische Erlebnisse, nachhaltigen Tourismus und das Schaffen von Erinnerungen, die ein Leben lang halten.",
+    "story3": "Jede Tour, die wir anbieten, ist sorgfältig gestaltet, um das Beste von Marokko zu zeigen – von den goldenen Dünen des Erg Chebbi bis zu den atemberaubenden Lagunen von Dakhla, von traditionellen Berberdörfern bis zu luxuriösen Wüstencamps unter den Sternen.",
     "whatWeStandFor": "Wofür wir stehen",
     "ourValues": "Unsere Werte",
+    "values": {
+      "passion": {
+        "title": "Leidenschaft für Abenteuer",
+        "description": "Wir leben und atmen die Wüste. Unser Team besteht aus erfahrenen lokalen Guides, die jede Düne, jede Oase und jeden versteckten Schatz der marokkanischen Sahara kennen."
+      },
+      "safety": {
+        "title": "Sicherheit zuerst",
+        "description": "Ihre Sicherheit ist unsere Priorität. Alle unsere Fahrzeuge werden regelmäßig gewartet und unsere Guides sind in Erster Hilfe und Notfallmaßnahmen geschult."
+      },
+      "sustainability": {
+        "title": "Nachhaltiger Tourismus",
+        "description": "Wir setzen uns dafür ein, die Schönheit der Sahara für zukünftige Generationen zu bewahren. Wir praktizieren verantwortungsvollen Tourismus und unterstützen lokale Gemeinschaften."
+      },
+      "authentic": {
+        "title": "Authentische Erlebnisse",
+        "description": "Wir bieten echte marokkanische Erlebnisse, von traditioneller Berber-Gastfreundschaft bis zu authentischen Wüstencamps unter den Sternen."
+      }
+    },
     "meetTheTeam": "Das Team",
-    "ourExperts": "Unsere Wüstenexperten"
+    "ourExperts": "Unsere Wüstenexperten",
+    "team": {
+      "founder": "Gründer & leitender Guide",
+      "operations": "Betriebsleiterin",
+      "headGuide": "Chef-Wüstenguide",
+      "ahmedBio": "In der Sahara geboren, führt Ahmed seit über 20 Jahren Wüstentouren. Seine Leidenschaft für die marokkanische Kultur ist ansteckend.",
+      "fatimaBio": "Mit über 10 Jahren Erfahrung im Tourismus sorgt Fatima dafür, dass jede Tour reibungslos verläuft und sich jeder Gast wie zu Hause fühlt.",
+      "hassanBio": "Als gebürtiger Berber kennt Hassan die Wüste wie seine Westentasche. Seine Geschichten machen jede Reise magisch."
+    }
   },
   "contact": {
     "heroTitle": "Kontaktieren Sie uns",
@@ -240,6 +276,13 @@
     "successMessage": "Nachricht erfolgreich gesendet! Wir melden uns bald.",
     "successDescription": "Ihre Nachricht wurde gesendet. Wir antworten innerhalb von 24 Stunden.",
     "sendAnother": "Weitere Nachricht senden",
+    "subjects": {
+      "general": "Allgemeine Anfrage",
+      "booking": "Buchungsfrage",
+      "custom": "Individuelle Tour-Anfrage",
+      "support": "Kundenservice",
+      "partnership": "Partnerschaftsmöglichkeit"
+    },
     "form": {
       "name": "Vollständiger Name",
       "namePlaceholder": "Ihr Name",
@@ -260,6 +303,48 @@
     "heroSubtitle": "Antworten auf häufige Fragen zu unseren Touren, Buchungen und Reisetipps.",
     "stillQuestions": "Noch Fragen?",
     "contactUs": "Keine Antwort gefunden? Unser Team hilft Ihnen gerne.",
-    "contactButton": "Kontakt aufnehmen"
+    "contactButton": "Kontakt aufnehmen",
+    "categories": {
+      "booking": "Buchung & Reservierung",
+      "tours": "Touren & Erlebnisse",
+      "safety": "Sicherheit & Gesundheit",
+      "logistics": "Logistik & Transport"
+    },
+    "booking": {
+      "q1": "Wie buche ich eine Tour?",
+      "a1": "Sie können eine Tour direkt über unsere Website buchen, indem Sie Ihre bevorzugte Tour auswählen, Ihre Daten wählen und das Buchungsformular ausfüllen. Alternativ können Sie uns per Telefon oder E-Mail kontaktieren.",
+      "q2": "Wie lauten Ihre Stornierungsbedingungen?",
+      "a2": "Wir bieten kostenlose Stornierung bis 7 Tage vor Tourstart. Stornierungen 3-7 Tage vorher erhalten 50% Erstattung. Stornierungen unter 3 Tagen sind nicht erstattungsfähig. Wir empfehlen eine Reiseversicherung.",
+      "q3": "Kann ich meine Buchung nach der Bestätigung ändern?",
+      "a3": "Ja, Sie können Ihre Buchung bis 48 Stunden vor Tourbeginn ändern, vorbehaltlich Verfügbarkeit. Änderungen können Preisanpassungen zur Folge haben.",
+      "q4": "Welche Zahlungsmethoden akzeptieren Sie?",
+      "a4": "Wir akzeptieren gängige Kreditkarten (Visa, MasterCard, American Express), PayPal und Banküberweisungen."
+    },
+    "tours": {
+      "q1": "Was sollte ich für eine Wüstentour einpacken?",
+      "a1": "Wir empfehlen bequeme, lockere Kleidung in Schichten, da die Wüstentemperaturen stark variieren. Wichtig sind: Sonnenschutz, Sonnenbrille, Hut, bequeme Wanderschuhe, warme Jacke für abends, Schal gegen Wind/Sand und eine Kamera.",
+      "q2": "Sind die Touren für Kinder geeignet?",
+      "a2": "Die meisten unserer Touren sind familienfreundlich. Einige Abenteueraktivitäten wie Quadfahren haben Altersbeschränkungen (mindestens 16 Jahre zum Fahren).",
+      "q3": "Was ist im Tourpreis enthalten?",
+      "a3": "Unsere Preise umfassen normalerweise: Transport in komfortablen 4x4-Fahrzeugen, Unterkunft, Mahlzeiten (Frühstück, Mittag- und Abendessen), Führungen und alle genannten Aktivitäten. Persönliche Ausgaben und Reiseversicherung sind nicht enthalten.",
+      "q4": "Was ist der Unterschied zwischen Standard und Premium?",
+      "a4": "Premium-Pakete bieten verbesserte Unterkünfte (Luxus-Wüstencamps), private Fahrzeuge, Gourmet-Mahlzeiten und persönlichere Betreuung."
+    },
+    "safety": {
+      "q1": "Ist es sicher, in der marokkanischen Wüste zu reisen?",
+      "a1": "Ja, Wüstenreisen mit einem erfahrenen Anbieter wie uns sind sehr sicher. Alle unsere Guides sind zertifiziert, unsere Fahrzeuge werden regelmäßig gewartet und wir haben Satellitenkommunikation für Notfälle.",
+      "q2": "Was ist, wenn ich Ernährungseinschränkungen habe?",
+      "a2": "Wir berücksichtigen verschiedene Ernährungsanforderungen: vegetarisch, vegan, halal, glutenfrei und Allergien. Teilen Sie uns Ihre Bedürfnisse bei der Buchung mit.",
+      "q3": "Brauche ich Impfungen für Marokko?",
+      "a3": "Für Marokko sind keine speziellen Impfungen erforderlich, aber wir empfehlen, Standardimpfungen aktuell zu halten. Konsultieren Sie vor der Reise Ihren Arzt."
+    },
+    "logistics": {
+      "q1": "Bieten Sie Flughafentransfers an?",
+      "a1": "Ja, wir bieten Transfers von den wichtigsten marokkanischen Flughäfen: Marrakesch, Fes, Casablanca, Agadir und Dakhla.",
+      "q2": "Welche Fahrzeuge nutzen Sie?",
+      "a2": "Wir verwenden moderne, gut gewartete Toyota Land Cruiser 4x4, ausgestattet für Wüstenbedingungen, mit Klimaanlage und Kommunikationsausrüstung.",
+      "q3": "Kann ich eine individuelle Tour anfragen?",
+      "a3": "Absolut! Wir sind auf maßgeschneiderte Routen spezialisiert, angepasst an Ihre Interessen, Zeitplan und Budget. Kontaktieren Sie uns für ein persönliches Angebot."
+    }
   }
 }
