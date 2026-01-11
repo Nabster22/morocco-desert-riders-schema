@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useTours, useCities, useCategories, useCreateTour, useUpdateTour, useDeleteTour } from '@/hooks/useApi';
+import ImageUpload from '@/components/ImageUpload';
 import tourCamel from '@/assets/tour-camel.jpg';
 
 const AdminTours = () => {
@@ -25,7 +26,16 @@ const AdminTours = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedTour, setSelectedTour] = useState<any>(null);
-  const [formData, setFormData] = useState({ name: '', city_id: '', category_id: '', duration_days: 1, price_standard: 0, price_premium: 0, description: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    city_id: '', 
+    category_id: '', 
+    duration_days: 1, 
+    price_standard: 0, 
+    price_premium: 0, 
+    description: '',
+    images: [] as string[]
+  });
 
   const { data: toursData, isLoading, isError } = useTours({ search: searchQuery || undefined });
   const { data: citiesData } = useCities();
@@ -39,7 +49,12 @@ const AdminTours = () => {
   const categories = categoriesData?.data || [];
 
   const handleCreateOrUpdate = async () => {
-    const data = { ...formData, city_id: parseInt(formData.city_id), category_id: parseInt(formData.category_id) };
+    const data = { 
+      ...formData, 
+      city_id: parseInt(formData.city_id), 
+      category_id: parseInt(formData.category_id),
+      images: formData.images.length > 0 ? formData.images : undefined
+    };
     if (selectedTour) {
       await updateTour.mutateAsync({ id: selectedTour.id, data });
     } else {
@@ -57,11 +72,32 @@ const AdminTours = () => {
 
   const openEditDialog = (tour: any) => {
     setSelectedTour(tour);
-    setFormData({ name: tour.name, city_id: tour.city_id?.toString() || '', category_id: tour.category_id?.toString() || '', duration_days: tour.duration_days, price_standard: tour.price_standard, price_premium: tour.price_premium, description: tour.description || '' });
+    setFormData({ 
+      name: tour.name, 
+      city_id: tour.city_id?.toString() || '', 
+      category_id: tour.category_id?.toString() || '', 
+      duration_days: tour.duration_days, 
+      price_standard: tour.price_standard, 
+      price_premium: tour.price_premium, 
+      description: tour.description || '',
+      images: tour.images || []
+    });
     setIsDialogOpen(true);
   };
 
-  const resetForm = () => { setFormData({ name: '', city_id: '', category_id: '', duration_days: 1, price_standard: 0, price_premium: 0, description: '' }); setSelectedTour(null); };
+  const resetForm = () => { 
+    setFormData({ 
+      name: '', 
+      city_id: '', 
+      category_id: '', 
+      duration_days: 1, 
+      price_standard: 0, 
+      price_premium: 0, 
+      description: '',
+      images: []
+    }); 
+    setSelectedTour(null); 
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -112,7 +148,7 @@ const AdminTours = () => {
                       <td className="py-4 px-4"><div className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-4 w-4" />{tour.city_name}</div></td>
                       <td className="py-4 px-4"><div className="flex items-center gap-1 text-muted-foreground"><Clock className="h-4 w-4" />{tour.duration_days} day{tour.duration_days > 1 ? 's' : ''}</div></td>
                       <td className="py-4 px-4"><div className="font-medium text-terracotta">${tour.price_standard}</div></td>
-                      <td className="py-4 px-4"><Badge className={tour.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}>{tour.is_active ? 'Active' : 'Inactive'}</Badge></td>
+                      <td className="py-4 px-4"><Badge className={tour.is_active ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'}>{tour.is_active ? 'Active' : 'Inactive'}</Badge></td>
                       <td className="py-4 px-6 text-right">
                         <DropdownMenu><DropdownMenuTrigger asChild><Button variant="ghost" size="icon"><MoreHorizontal className="h-4 w-4" /></Button></DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
@@ -132,7 +168,7 @@ const AdminTours = () => {
       </main>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader><DialogTitle>{selectedTour ? 'Edit Tour' : 'Create New Tour'}</DialogTitle></DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2"><Label>Tour Name</Label><Input value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} /></div>
@@ -146,6 +182,14 @@ const AdminTours = () => {
               <div className="grid gap-2"><Label>Premium Price ($)</Label><Input type="number" min="0" value={formData.price_premium} onChange={(e) => setFormData({ ...formData, price_premium: parseInt(e.target.value) || 0 })} /></div>
             </div>
             <div className="grid gap-2"><Label>Description</Label><Textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows={4} /></div>
+            <div className="grid gap-2">
+              <Label>Tour Images</Label>
+              <ImageUpload 
+                images={formData.images} 
+                onChange={(images) => setFormData({ ...formData, images })} 
+                maxImages={5}
+              />
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>

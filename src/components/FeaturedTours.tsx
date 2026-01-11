@@ -5,6 +5,10 @@ import TourCard from "./TourCard";
 import tourCamp from "@/assets/tour-camp.jpg";
 import tourQuad from "@/assets/tour-quad.jpg";
 import tourCamel from "@/assets/tour-camel.jpg";
+import tourDunes from "@/assets/tour-dunes.jpg";
+import tourGlamping from "@/assets/tour-glamping.jpg";
+import tourKitesurf from "@/assets/tour-kitesurf.jpg";
+import tourBerber from "@/assets/tour-berber.jpg";
 
 const tours = [
   {
@@ -33,8 +37,8 @@ const tours = [
   },
   {
     id: 3,
-    image: tourCamp,
-    title: "Luxury Desert Camp Under the Stars",
+    image: tourGlamping,
+    title: "Luxury Desert Glamping Under the Stars",
     city: "Marrakech",
     duration: "2 Days",
     rating: 5.0,
@@ -45,8 +49,8 @@ const tours = [
   },
   {
     id: 4,
-    image: tourCamel,
-    title: "Dakhla Kitesurfing & Desert Safari",
+    image: tourKitesurf,
+    title: "Dakhla Kitesurfing & Lagoon Adventure",
     city: "Dakhla",
     duration: "5 Days",
     rating: 4.7,
@@ -54,6 +58,54 @@ const tours = [
     priceStandard: 599,
     pricePremium: 849,
     category: "Watersport",
+  },
+  {
+    id: 5,
+    image: tourDunes,
+    title: "Merzouga Golden Dunes Expedition",
+    city: "Erfoud",
+    duration: "4 Days",
+    rating: 4.9,
+    reviews: 287,
+    priceStandard: 449,
+    pricePremium: 699,
+    category: "Adventure",
+  },
+  {
+    id: 6,
+    image: tourBerber,
+    title: "Authentic Berber Cultural Experience",
+    city: "Marrakech",
+    duration: "2 Days",
+    rating: 4.8,
+    reviews: 198,
+    priceStandard: 249,
+    pricePremium: 399,
+    category: "Cultural",
+  },
+  {
+    id: 7,
+    image: tourCamp,
+    title: "Atlas Mountains & Desert Combo",
+    city: "Marrakech",
+    duration: "4 Days",
+    rating: 4.9,
+    reviews: 234,
+    priceStandard: 549,
+    pricePremium: 799,
+    category: "Adventure",
+  },
+  {
+    id: 8,
+    image: tourDunes,
+    title: "Sunrise Sandboarding Experience",
+    city: "Erfoud",
+    duration: "1 Day",
+    rating: 4.6,
+    reviews: 156,
+    priceStandard: 79,
+    pricePremium: 119,
+    category: "Action",
   },
 ];
 

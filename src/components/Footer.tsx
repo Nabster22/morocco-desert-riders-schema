@@ -150,10 +150,10 @@ const Footer = () => {
               © {new Date().getFullYear()} Morocco Desert Riders. {t("footer.rights", "All rights reserved.")}
             </p>
             <div className="flex gap-6">
-              <Link to="/faq" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
+              <Link to="/privacy" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
                 {t("footer.privacy", "Privacy Policy")}
               </Link>
-              <Link to="/faq" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
+              <Link to="/terms" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
                 {t("footer.terms", "Terms of Service")}
               </Link>
             </div>
