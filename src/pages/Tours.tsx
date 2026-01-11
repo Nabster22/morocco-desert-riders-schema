@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, SlidersHorizontal, X, MapPin, Clock, Star, Sparkles, ArrowUpDown } from 'lucide-react';
+import { Search, SlidersHorizontal, X, MapPin, Clock, Star, Sparkles, AlertCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -12,149 +12,14 @@ import { Slider } from '@/components/ui/slider';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
 import { ToursGridSkeleton } from '@/components/ui/skeleton';
-import tourCamp from '@/assets/tour-camp.jpg';
-import tourQuad from '@/assets/tour-quad.jpg';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useTours, useCities, useCategories } from '@/hooks/useApi';
 import tourCamel from '@/assets/tour-camel.jpg';
+import tourQuad from '@/assets/tour-quad.jpg';
+import tourCamp from '@/assets/tour-camp.jpg';
 
-// Sample tours data (would come from API)
-const allTours = [
-  {
-    id: 1,
-    name: 'Sahara Sunset Camel Trek & Desert Camp',
-    city: 'Erfoud',
-    city_id: 3,
-    category: 'Camel Trekking',
-    category_id: 1,
-    duration_days: 3,
-    price_standard: 299,
-    price_premium: 449,
-    rating: 4.9,
-    reviews: 324,
-    image: tourCamel,
-    description: 'Experience the magic of the Sahara with a traditional camel trek and luxury desert camp.',
-  },
-  {
-    id: 2,
-    name: 'Agadir Quad Biking Desert Adventure',
-    city: 'Agadir',
-    city_id: 1,
-    category: 'Quad Biking',
-    category_id: 2,
-    duration_days: 1,
-    price_standard: 89,
-    price_premium: 129,
-    rating: 4.8,
-    reviews: 256,
-    image: tourQuad,
-    description: 'Thrilling quad bike adventure through coastal dunes and desert landscapes.',
-  },
-  {
-    id: 3,
-    name: 'Luxury Desert Camp Under the Stars',
-    city: 'Marrakech',
-    city_id: 4,
-    category: 'Luxury Camping',
-    category_id: 4,
-    duration_days: 2,
-    price_standard: 399,
-    price_premium: 599,
-    rating: 5.0,
-    reviews: 189,
-    image: tourCamp,
-    description: 'Premium glamping experience in the heart of the desert with gourmet dining.',
-  },
-  {
-    id: 4,
-    name: 'Dakhla Kitesurfing & Desert Safari',
-    city: 'Dakhla',
-    city_id: 2,
-    category: 'Watersports',
-    category_id: 3,
-    duration_days: 5,
-    price_standard: 599,
-    price_premium: 849,
-    rating: 4.7,
-    reviews: 142,
-    image: tourCamel,
-    description: 'Combine world-class kitesurfing with desert exploration in the Dakhla lagoon.',
-  },
-  {
-    id: 5,
-    name: 'Erfoud Fossil Discovery Tour',
-    city: 'Erfoud',
-    city_id: 3,
-    category: 'Cultural Tours',
-    category_id: 5,
-    duration_days: 2,
-    price_standard: 149,
-    price_premium: 229,
-    rating: 4.6,
-    reviews: 98,
-    image: tourQuad,
-    description: 'Explore ancient fossils and geological wonders of the Moroccan desert.',
-  },
-  {
-    id: 6,
-    name: 'Marrakech to Merzouga Epic Journey',
-    city: 'Marrakech',
-    city_id: 4,
-    category: 'Multi-day Tours',
-    category_id: 6,
-    duration_days: 4,
-    price_standard: 449,
-    price_premium: 699,
-    rating: 4.9,
-    reviews: 412,
-    image: tourCamp,
-    description: 'Epic 4-day journey from Marrakech through the Atlas Mountains to Merzouga dunes.',
-  },
-  {
-    id: 7,
-    name: 'Sunset Camel Ride Agadir',
-    city: 'Agadir',
-    city_id: 1,
-    category: 'Camel Trekking',
-    category_id: 1,
-    duration_days: 1,
-    price_standard: 59,
-    price_premium: 89,
-    rating: 4.5,
-    reviews: 567,
-    image: tourCamel,
-    description: 'Romantic sunset camel ride along the Agadir beach and desert dunes.',
-  },
-  {
-    id: 8,
-    name: 'Sandboarding Desert Experience',
-    city: 'Erfoud',
-    city_id: 3,
-    category: 'Adventure Sports',
-    category_id: 2,
-    duration_days: 1,
-    price_standard: 79,
-    price_premium: 119,
-    rating: 4.8,
-    reviews: 234,
-    image: tourQuad,
-    description: 'Adrenaline-pumping sandboarding on the towering dunes of Erg Chebbi.',
-  },
-];
-
-const cities = [
-  { id: 1, name: 'Agadir' },
-  { id: 2, name: 'Dakhla' },
-  { id: 3, name: 'Erfoud' },
-  { id: 4, name: 'Marrakech' },
-];
-
-const categories = [
-  { id: 1, name: 'Camel Trekking' },
-  { id: 2, name: 'Quad Biking' },
-  { id: 3, name: 'Watersports' },
-  { id: 4, name: 'Luxury Camping' },
-  { id: 5, name: 'Cultural Tours' },
-  { id: 6, name: 'Multi-day Tours' },
-];
+// Fallback images for tours without images
+const fallbackImages = [tourCamel, tourQuad, tourCamp];
 
 const Tours = () => {
   const { t } = useTranslation();
@@ -168,78 +33,33 @@ const Tours = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [sortBy, setSortBy] = useState(searchParams.get('sort') || 'popularity');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
-  // Filtered tours
-  const [filteredTours, setFilteredTours] = useState(allTours);
-
-  // Simulate loading on mount
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    let result = [...allTours];
-
-    // Search filter
-    if (search) {
-      const searchLower = search.toLowerCase();
-      result = result.filter(
-        (tour) =>
-          tour.name.toLowerCase().includes(searchLower) ||
-          tour.description.toLowerCase().includes(searchLower) ||
-          tour.city.toLowerCase().includes(searchLower)
-      );
-    }
-
-    // City filter
-    if (selectedCity && selectedCity !== 'all') {
-      result = result.filter((tour) => tour.city === selectedCity);
-    }
-
-    // Category filter
-    if (selectedCategory && selectedCategory !== 'all') {
-      result = result.filter((tour) => tour.category === selectedCategory);
-    }
-
-    // Duration filter
-    if (selectedDuration && selectedDuration !== 'all') {
+  // API hooks
+  const { data: citiesData } = useCities();
+  const { data: categoriesData } = useCategories();
+  
+  // Build filters for API
+  const apiFilters = useMemo(() => {
+    const filters: any = {
+      sort: sortBy,
+      min_price: priceRange[0],
+      max_price: priceRange[1] < 1000 ? priceRange[1] : undefined,
+    };
+    if (search) filters.search = search;
+    if (selectedCity !== 'all') filters.city = selectedCity;
+    if (selectedCategory !== 'all') filters.category = selectedCategory;
+    if (selectedDuration !== 'all') {
       const [min, max] = selectedDuration.split('-').map(Number);
-      result = result.filter((tour) => {
-        if (max) {
-          return tour.duration_days >= min && tour.duration_days <= max;
-        }
-        return tour.duration_days >= min;
-      });
+      filters.duration = max || min;
     }
-
-    // Price filter
-    result = result.filter(
-      (tour) => tour.price_standard >= priceRange[0] && tour.price_standard <= priceRange[1]
-    );
-
-    // Sorting
-    switch (sortBy) {
-      case 'price_asc':
-        result.sort((a, b) => a.price_standard - b.price_standard);
-        break;
-      case 'price_desc':
-        result.sort((a, b) => b.price_standard - a.price_standard);
-        break;
-      case 'rating':
-        result.sort((a, b) => b.rating - a.rating);
-        break;
-      case 'popularity':
-        result.sort((a, b) => b.reviews - a.reviews);
-        break;
-      case 'newest':
-        result.sort((a, b) => b.id - a.id);
-        break;
-    }
-
-    setFilteredTours(result);
+    return filters;
   }, [search, selectedCity, selectedCategory, selectedDuration, priceRange, sortBy]);
+
+  const { data: toursData, isLoading, isError, error } = useTours(apiFilters);
+
+  const cities = citiesData?.data || [];
+  const categories = categoriesData?.data || [];
+  const tours = toursData?.data || [];
 
   const clearFilters = () => {
     setSearch('');
@@ -257,6 +77,13 @@ const Tours = () => {
     selectedDuration !== 'all' ||
     priceRange[0] > 0 ||
     priceRange[1] < 1000;
+
+  const getTourImage = (tour: any, index: number) => {
+    if (tour.images && tour.images.length > 0) {
+      return tour.images[0];
+    }
+    return fallbackImages[index % fallbackImages.length];
+  };
 
   const FilterContent = () => (
     <div className="space-y-6">
@@ -283,7 +110,7 @@ const Tours = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t('tour.allCities')}</SelectItem>
-            {cities.map((city) => (
+            {cities.map((city: any) => (
               <SelectItem key={city.id} value={city.name}>
                 {city.name}
               </SelectItem>
@@ -301,7 +128,7 @@ const Tours = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t('tour.allCategories')}</SelectItem>
-            {categories.map((category) => (
+            {categories.map((category: any) => (
               <SelectItem key={category.id} value={category.name}>
                 {category.name}
               </SelectItem>
@@ -445,7 +272,7 @@ const Tours = () => {
                     </SheetContent>
                   </Sheet>
                   <span className="text-muted-foreground text-sm">
-                    {filteredTours.length} tours found
+                    {tours.length} tours found
                   </span>
                 </div>
 
@@ -456,13 +283,23 @@ const Tours = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="popularity">{t('tour.popularity')}</SelectItem>
-                    <SelectItem value="rating">{t('tour.ratingDesc')}</SelectItem>
+                    <SelectItem value="rating_desc">{t('tour.ratingDesc')}</SelectItem>
                     <SelectItem value="price_asc">{t('tour.priceAsc')}</SelectItem>
                     <SelectItem value="price_desc">{t('tour.priceDesc')}</SelectItem>
                     <SelectItem value="newest">{t('tour.newest')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Error State */}
+              {isError && (
+                <Alert variant="destructive" className="mb-6">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>
+                    {(error as any)?.message || 'Failed to load tours. Please try again later.'}
+                  </AlertDescription>
+                </Alert>
+              )}
 
               {/* Tours Grid */}
               <AnimatePresence mode="wait">
@@ -475,14 +312,14 @@ const Tours = () => {
                   >
                     <ToursGridSkeleton count={6} />
                   </motion.div>
-                ) : filteredTours.length > 0 ? (
+                ) : tours.length > 0 ? (
                   <motion.div
                     key="tours"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
                   >
-                    {filteredTours.map((tour, index) => (
+                    {tours.map((tour: any, index: number) => (
                       <motion.div
                         key={tour.id}
                         initial={{ opacity: 0, y: 20 }}
@@ -495,47 +332,66 @@ const Tours = () => {
                             {/* Image */}
                             <div className="relative aspect-[4/3] overflow-hidden">
                               <img
-                                src={tour.image}
+                                src={getTourImage(tour, index)}
                                 alt={tour.name}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
-                              <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                              <div className="absolute top-3 left-3">
-                                <Badge className="bg-background/90 text-foreground backdrop-blur-sm border-0 shadow-sm">
-                                  {tour.category}
-                                </Badge>
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                              
+                              {/* Category Badge */}
+                              <Badge className="absolute top-4 left-4 bg-white/90 text-foreground hover:bg-white">
+                                {tour.category_name || tour.category}
+                              </Badge>
+
+                              {/* Rating */}
+                              {tour.avg_rating && (
+                                <div className="absolute top-4 right-4 flex items-center gap-1 bg-white/90 px-2 py-1 rounded-full">
+                                  <Star className="h-3.5 w-3.5 fill-accent text-accent" />
+                                  <span className="text-sm font-medium text-foreground">
+                                    {Number(tour.avg_rating).toFixed(1)}
+                                  </span>
+                                </div>
+                              )}
+
+                              {/* Price on image */}
+                              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                                <div>
+                                  <span className="text-white/80 text-sm">From</span>
+                                  <div className="text-white text-2xl font-bold">
+                                    ${tour.price_standard}
+                                  </div>
+                                </div>
                               </div>
                             </div>
 
                             {/* Content */}
                             <div className="p-5">
-                              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                                <MapPin className="h-4 w-4" />
-                                <span>{tour.city}</span>
-                                <span className="mx-1">•</span>
-                                <Clock className="h-4 w-4" />
-                                <span>
-                                  {tour.duration_days} {tour.duration_days === 1 ? t('common.day') : t('common.days')}
-                                </span>
-                              </div>
-
-                              <h3 className="font-semibold text-foreground group-hover:text-terracotta transition-colors line-clamp-2 mb-3">
+                              <h3 className="font-semibold text-lg text-foreground mb-2 line-clamp-1 group-hover:text-terracotta transition-colors">
                                 {tour.name}
                               </h3>
-
-                              <div className="flex items-center justify-between">
+                              
+                              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                                 <div className="flex items-center gap-1">
-                                  <Star className="h-4 w-4 fill-accent text-accent" />
-                                  <span className="font-medium">{tour.rating}</span>
-                                  <span className="text-muted-foreground text-sm">
-                                    ({tour.reviews})
+                                  <MapPin className="h-4 w-4" />
+                                  <span>{tour.city_name || tour.city}</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <Clock className="h-4 w-4" />
+                                  <span>
+                                    {tour.duration_days} {tour.duration_days === 1 ? t('common.day') : t('common.days')}
                                   </span>
                                 </div>
-                                <div className="text-right">
-                                  <span className="text-xs text-muted-foreground block">{t('common.from')}</span>
-                                  <span className="text-lg font-bold text-terracotta">${tour.price_standard}</span>
-                                </div>
                               </div>
+
+                              {tour.review_count > 0 && (
+                                <div className="mt-3 pt-3 border-t border-border flex items-center gap-1 text-sm text-muted-foreground">
+                                  <Star className="h-4 w-4 fill-accent text-accent" />
+                                  <span className="font-medium text-foreground">
+                                    {Number(tour.avg_rating).toFixed(1)}
+                                  </span>
+                                  <span>({tour.review_count} {t('common.reviews')})</span>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </Link>
@@ -545,18 +401,22 @@ const Tours = () => {
                 ) : (
                   <motion.div
                     key="empty"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-20 bg-card rounded-2xl border border-border"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-center py-16"
                   >
-                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Search className="h-8 w-8 text-muted-foreground" />
+                    <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-muted flex items-center justify-center">
+                      <Search className="h-10 w-10 text-muted-foreground" />
                     </div>
-                    <p className="text-foreground font-medium text-lg mb-2">No tours found</p>
-                    <p className="text-muted-foreground mb-6">{t('common.noResults')}</p>
+                    <h3 className="text-xl font-semibold text-foreground mb-2">
+                      No tours found
+                    </h3>
+                    <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                      We couldn't find any tours matching your filters. Try adjusting your search criteria.
+                    </p>
                     <Button variant="outline" onClick={clearFilters}>
                       <X className="h-4 w-4 mr-2" />
-                      Clear Filters
+                      Clear All Filters
                     </Button>
                   </motion.div>
                 )}

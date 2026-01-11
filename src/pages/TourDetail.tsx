@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import {
@@ -13,6 +13,8 @@ import {
   Calendar,
   Heart,
   Share2,
+  Loader2,
+  AlertCircle,
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -23,41 +25,29 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useTour, useTourReviews } from '@/hooks/useApi';
 import tourCamp from '@/assets/tour-camp.jpg';
 import tourQuad from '@/assets/tour-quad.jpg';
 import tourCamel from '@/assets/tour-camel.jpg';
 
-// Sample tour data
-const tourData = {
-  id: 1,
-  name: 'Sahara Sunset Camel Trek & Desert Camp',
-  city: 'Erfoud',
-  category: 'Camel Trekking',
-  duration_days: 3,
-  price_standard: 299,
-  price_premium: 449,
-  max_guests: 12,
-  rating: 4.9,
-  reviews_count: 324,
-  images: [tourCamel, tourCamp, tourQuad, tourCamel, tourCamp],
-  description: `Experience the magic of Morocco's Sahara Desert on this unforgettable 3-day adventure. Journey through golden dunes on camelback, watch the sunset paint the desert in brilliant oranges and reds, and spend the night in a traditional Berber camp under a canopy of stars.
+const fallbackImages = [tourCamel, tourCamp, tourQuad, tourCamel, tourCamp];
 
-This premium desert experience combines the timeless romance of camel trekking with the comfort of a luxury desert camp, complete with traditional Moroccan cuisine and authentic cultural experiences.`,
+// Default tour data for when API fails or returns incomplete data
+const defaultTourData = {
   highlights: [
-    'Camel trek through the Erg Chebbi dunes',
-    'Sunset and sunrise over the Sahara',
-    'Overnight in a luxury desert camp',
-    'Traditional Berber music and entertainment',
-    'Stargazing in one of the darkest skies on Earth',
-    'Authentic Moroccan cuisine',
+    'Professional English-speaking guide',
+    'Authentic Moroccan experience',
+    'Beautiful desert landscapes',
+    'Traditional Berber hospitality',
+    'Memorable photo opportunities',
   ],
   included: [
-    'Professional English-speaking guide',
-    'Camel trekking with experienced handlers',
-    '2 nights luxury desert camp accommodation',
-    'All meals (breakfast, lunch, dinner)',
-    'Traditional Berber entertainment',
-    'Hotel pickup and drop-off from Erfoud',
+    'Professional guide',
+    'Transportation',
+    'Meals as specified',
+    'Entrance fees',
     'Travel insurance',
   ],
   not_included: [
@@ -65,68 +55,104 @@ This premium desert experience combines the timeless romance of camel trekking w
     'Personal expenses',
     'Tips and gratuities',
     'Alcoholic beverages',
-    'Travel insurance upgrade',
   ],
   itinerary: [
     {
       day: 1,
-      title: 'Arrival & Sunset Camel Trek',
-      description:
-        'Meet your guide in Erfoud and transfer to the desert. Begin your camel trek as the sun starts to descend, arriving at camp just as the sunset paints the dunes golden.',
-    },
-    {
-      day: 2,
-      title: 'Desert Exploration',
-      description:
-        'Wake early for sunrise over the dunes. After breakfast, explore the desert on foot or camel, visit a nomad family, and learn about desert survival. Evening features traditional music and dinner under the stars.',
-    },
-    {
-      day: 3,
-      title: 'Sunrise & Return',
-      description:
-        'Catch one final sunrise before breakfast. Trek back to civilization and transfer to Erfoud. Optional extension to visit the fossil quarries.',
+      title: 'Day 1 - Adventure Begins',
+      description: 'Meet your guide and begin your journey into the desert.',
     },
   ],
 };
 
-const reviews = [
-  {
-    id: 1,
-    user: 'Sarah M.',
-    avatar: '',
-    rating: 5,
-    date: '2024-12-15',
-    comment:
-      'Absolutely magical experience! The desert camp was incredible and our guide Mohammed was knowledgeable and friendly. The sunset camel ride was the highlight of our trip to Morocco.',
-  },
-  {
-    id: 2,
-    user: 'James K.',
-    avatar: '',
-    rating: 5,
-    date: '2024-12-10',
-    comment:
-      'Worth every penny. The premium package gave us a private tent with actual beds and a bathroom. The food was delicious and the stargazing was unbelievable.',
-  },
-  {
-    id: 3,
-    user: 'Marie L.',
-    avatar: '',
-    rating: 4,
-    date: '2024-12-05',
-    comment:
-      'Beautiful experience overall. The only reason for 4 stars is that the camel ride was longer than expected and a bit uncomfortable. But the camp and hospitality more than made up for it!',
-  },
-];
+const TourDetailSkeleton = () => (
+  <div className="space-y-8">
+    <Skeleton className="w-full aspect-[16/9] rounded-xl" />
+    <div className="space-y-4">
+      <Skeleton className="h-8 w-3/4" />
+      <div className="flex gap-4">
+        <Skeleton className="h-6 w-24" />
+        <Skeleton className="h-6 w-24" />
+        <Skeleton className="h-6 w-24" />
+      </div>
+    </div>
+    <Skeleton className="h-48 w-full" />
+  </div>
+);
 
 const TourDetail = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { id } = useParams();
+  const tourId = parseInt(id || '0', 10);
+  
   const [selectedPackage, setSelectedPackage] = useState<'standard' | 'premium'>('standard');
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const tour = tourData; // In real app, fetch by id
-  const cityCoords = cityCoordinates[tour.city] || { lat: 31.7917, lng: -7.0926 };
+  const { data: tourResponse, isLoading, isError, error } = useTour(tourId);
+  const { data: reviewsResponse } = useTourReviews(tourId);
+
+  const tour = tourResponse?.data || tourResponse;
+  const reviews = reviewsResponse?.data || [];
+
+  // Get tour images or use fallbacks
+  const tourImages = tour?.images?.length > 0 ? tour.images : fallbackImages;
+  
+  // Get city coordinates
+  const cityName = tour?.city_name || tour?.city || 'Marrakech';
+  const cityCoords = cityCoordinates[cityName] || { lat: 31.7917, lng: -7.0926 };
+
+  // Merge tour data with defaults
+  const highlights = tour?.highlights || defaultTourData.highlights;
+  const included = tour?.included || defaultTourData.included;
+  const notIncluded = tour?.not_included || defaultTourData.not_included;
+  const itinerary = tour?.itinerary || defaultTourData.itinerary;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="pt-20 bg-card border-b border-border">
+          <div className="container mx-auto px-4 py-4">
+            <Skeleton className="h-4 w-64" />
+          </div>
+        </div>
+        <main className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <TourDetailSkeleton />
+            </div>
+            <div className="lg:col-span-1">
+              <Skeleton className="h-96 w-full rounded-xl" />
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (isError || !tour) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto px-4 py-32">
+          <Alert variant="destructive" className="max-w-lg mx-auto">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>
+              {(error as any)?.message || 'Tour not found. It may have been removed or is no longer available.'}
+            </AlertDescription>
+          </Alert>
+          <div className="text-center mt-8">
+            <Button variant="outline" onClick={() => navigate('/tours')}>
+              Back to Tours
+            </Button>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -156,7 +182,7 @@ const TourDetail = () => {
           <div className="lg:col-span-2 space-y-8">
             {/* Gallery */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <ImageGallery images={tour.images} alt={tour.name} />
+              <ImageGallery images={tourImages} alt={tour.name} />
             </motion.div>
 
             {/* Title & Actions */}
@@ -168,14 +194,16 @@ const TourDetail = () => {
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="secondary">{tour.category}</Badge>
-                  <div className="flex items-center gap-1 text-sm">
-                    <Star className="h-4 w-4 fill-accent text-accent" />
-                    <span className="font-medium">{tour.rating}</span>
-                    <span className="text-muted-foreground">
-                      ({tour.reviews_count} {t('common.reviews')})
-                    </span>
-                  </div>
+                  <Badge variant="secondary">{tour.category_name || tour.category}</Badge>
+                  {tour.avg_rating && (
+                    <div className="flex items-center gap-1 text-sm">
+                      <Star className="h-4 w-4 fill-accent text-accent" />
+                      <span className="font-medium">{Number(tour.avg_rating).toFixed(1)}</span>
+                      <span className="text-muted-foreground">
+                        ({tour.review_count || 0} {t('common.reviews')})
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
                   {tour.name}
@@ -183,7 +211,7 @@ const TourDetail = () => {
                 <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <MapPin className="h-4 w-4" />
-                    <span>{tour.city}</span>
+                    <span>{cityName}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
@@ -193,7 +221,7 @@ const TourDetail = () => {
                   </div>
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" />
-                    <span>Max {tour.max_guests} guests</span>
+                    <span>Max {tour.max_guests || 12} guests</span>
                   </div>
                 </div>
               </div>
@@ -237,7 +265,7 @@ const TourDetail = () => {
                     <CardContent className="pt-6">
                       <h3 className="font-semibold text-lg mb-4">{t('tour.highlights')}</h3>
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {tour.highlights.map((item, index) => (
+                        {highlights.map((item: string, index: number) => (
                           <li key={index} className="flex items-start gap-2">
                             <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                             <span className="text-muted-foreground">{item}</span>
@@ -253,7 +281,7 @@ const TourDetail = () => {
                       <CardContent className="pt-6">
                         <h3 className="font-semibold text-lg mb-4">{t('tour.included')}</h3>
                         <ul className="space-y-2">
-                          {tour.included.map((item, index) => (
+                          {included.map((item: string, index: number) => (
                             <li key={index} className="flex items-start gap-2">
                               <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                               <span className="text-muted-foreground text-sm">{item}</span>
@@ -266,7 +294,7 @@ const TourDetail = () => {
                       <CardContent className="pt-6">
                         <h3 className="font-semibold text-lg mb-4">{t('tour.notIncluded')}</h3>
                         <ul className="space-y-2">
-                          {tour.not_included.map((item, index) => (
+                          {notIncluded.map((item: string, index: number) => (
                             <li key={index} className="flex items-start gap-2">
                               <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                               <span className="text-muted-foreground text-sm">{item}</span>
@@ -279,7 +307,7 @@ const TourDetail = () => {
                 </TabsContent>
 
                 <TabsContent value="itinerary" className="space-y-4">
-                  {tour.itinerary.map((day) => (
+                  {itinerary.map((day: any) => (
                     <Card key={day.day}>
                       <CardContent className="pt-6">
                         <div className="flex items-start gap-4">
@@ -305,14 +333,14 @@ const TourDetail = () => {
                       <div className="flex items-center gap-6">
                         <div className="text-center">
                           <div className="text-5xl font-display font-bold text-foreground">
-                            {tour.rating}
+                            {tour.avg_rating ? Number(tour.avg_rating).toFixed(1) : 'N/A'}
                           </div>
                           <div className="flex items-center justify-center gap-1 my-2">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <Star
                                 key={star}
                                 className={`h-5 w-5 ${
-                                  star <= Math.round(tour.rating)
+                                  star <= Math.round(tour.avg_rating || 0)
                                     ? 'fill-accent text-accent'
                                     : 'text-muted-foreground'
                                 }`}
@@ -320,7 +348,7 @@ const TourDetail = () => {
                             ))}
                           </div>
                           <div className="text-sm text-muted-foreground">
-                            {tour.reviews_count} {t('common.reviews')}
+                            {tour.review_count || 0} {t('common.reviews')}
                           </div>
                         </div>
                       </div>
@@ -328,45 +356,59 @@ const TourDetail = () => {
                   </Card>
 
                   {/* Reviews List */}
-                  {reviews.map((review) => (
-                    <Card key={review.id}>
-                      <CardContent className="pt-6">
-                        <div className="flex items-start gap-4">
-                          <Avatar>
-                            <AvatarImage src={review.avatar} />
-                            <AvatarFallback>{review.user.charAt(0)}</AvatarFallback>
-                          </Avatar>
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between mb-2">
-                              <div>
-                                <span className="font-medium text-foreground">{review.user}</span>
-                                <div className="flex items-center gap-1 mt-1">
-                                  {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star
-                                      key={star}
-                                      className={`h-4 w-4 ${
-                                        star <= review.rating
-                                          ? 'fill-accent text-accent'
-                                          : 'text-muted-foreground'
-                                      }`}
-                                    />
-                                  ))}
+                  {reviews.length > 0 ? (
+                    reviews.map((review: any) => (
+                      <Card key={review.id}>
+                        <CardContent className="pt-6">
+                          <div className="flex items-start gap-4">
+                            <Avatar>
+                              <AvatarImage src="" />
+                              <AvatarFallback>{review.user_name?.charAt(0) || 'U'}</AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-2">
+                                <div>
+                                  <span className="font-medium text-foreground">{review.user_name}</span>
+                                  <div className="flex items-center gap-1 mt-1">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                      <Star
+                                        key={star}
+                                        className={`h-4 w-4 ${
+                                          star <= review.rating
+                                            ? 'fill-accent text-accent'
+                                            : 'text-muted-foreground'
+                                        }`}
+                                      />
+                                    ))}
+                                  </div>
                                 </div>
+                                <span className="text-sm text-muted-foreground">
+                                  {new Date(review.created_at).toLocaleDateString()}
+                                </span>
                               </div>
-                              <span className="text-sm text-muted-foreground">{review.date}</span>
+                              <p className="text-muted-foreground">{review.comment}</p>
                             </div>
-                            <p className="text-muted-foreground">{review.comment}</p>
                           </div>
-                        </div>
+                        </CardContent>
+                      </Card>
+                    ))
+                  ) : (
+                    <Card>
+                      <CardContent className="py-12 text-center">
+                        <Star className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                        <h3 className="font-semibold text-foreground mb-2">No reviews yet</h3>
+                        <p className="text-muted-foreground">
+                          Be the first to review this tour!
+                        </p>
                       </CardContent>
                     </Card>
-                  ))}
+                  )}
                 </TabsContent>
 
                 <TabsContent value="location">
                   <Card>
                     <CardContent className="pt-6">
-                      <h3 className="font-semibold text-lg mb-4">{t('tour.location')}: {tour.city}</h3>
+                      <h3 className="font-semibold text-lg mb-4">{t('tour.location')}: {cityName}</h3>
                       <TourMap
                         lat={cityCoords.lat}
                         lng={cityCoords.lng}
@@ -376,7 +418,7 @@ const TourDetail = () => {
                             lat: cityCoords.lat,
                             lng: cityCoords.lng,
                             title: tour.name,
-                            description: tour.city,
+                            description: cityName,
                           },
                         ]}
                       />
@@ -410,57 +452,44 @@ const TourDetail = () => {
 
                   {/* Package Selection */}
                   <div className="space-y-3">
-                    <label className="text-sm font-medium">{t('tour.selectPackage')}</label>
+                    <label className="text-sm font-medium">{t('booking.selectPackage')}</label>
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         onClick={() => setSelectedPackage('standard')}
-                        className={`p-4 rounded-xl border-2 text-center transition-all ${
+                        className={`p-4 rounded-lg border-2 transition-all ${
                           selectedPackage === 'standard'
                             ? 'border-terracotta bg-terracotta/5'
-                            : 'border-border hover:border-muted-foreground'
+                            : 'border-border hover:border-terracotta/50'
                         }`}
                       >
-                        <div className="font-semibold">{t('tour.standard')}</div>
+                        <div className="font-semibold text-foreground">Standard</div>
                         <div className="text-lg font-bold text-terracotta">${tour.price_standard}</div>
                       </button>
                       <button
                         onClick={() => setSelectedPackage('premium')}
-                        className={`p-4 rounded-xl border-2 text-center transition-all ${
+                        className={`p-4 rounded-lg border-2 transition-all ${
                           selectedPackage === 'premium'
                             ? 'border-terracotta bg-terracotta/5'
-                            : 'border-border hover:border-muted-foreground'
+                            : 'border-border hover:border-terracotta/50'
                         }`}
                       >
-                        <div className="font-semibold">{t('tour.premium')}</div>
+                        <div className="font-semibold text-foreground">Premium</div>
                         <div className="text-lg font-bold text-terracotta">${tour.price_premium}</div>
                       </button>
                     </div>
                   </div>
 
                   {/* Book Button */}
-                  <Link to={`/booking/${tour.id}?package=${selectedPackage}`} className="block">
-                    <Button variant="hero" size="lg" className="w-full">
-                      <Calendar className="h-5 w-5 mr-2" />
-                      {t('tour.bookThisTour')}
+                  <Link to={`/booking/${tour.id}?package=${selectedPackage}`}>
+                    <Button variant="hero" size="lg" className="w-full gap-2">
+                      <Calendar className="h-5 w-5" />
+                      {t('booking.bookNow')}
                     </Button>
                   </Link>
 
                   {/* Quick Info */}
-                  <div className="pt-4 border-t border-border space-y-3 text-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">{t('tour.duration')}</span>
-                      <span className="font-medium">
-                        {tour.duration_days} {tour.duration_days === 1 ? t('common.day') : t('common.days')}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Max {t('common.guests')}</span>
-                      <span className="font-medium">{tour.max_guests}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">{t('tour.city')}</span>
-                      <span className="font-medium">{tour.city}</span>
-                    </div>
+                  <div className="text-center text-sm text-muted-foreground">
+                    <p>Free cancellation up to 24 hours before</p>
                   </div>
                 </CardContent>
               </Card>
