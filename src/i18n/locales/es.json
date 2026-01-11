@@ -158,6 +158,10 @@
   "footer": {
     "description": "Aventuras premium en el desierto a través de los paisajes más impresionantes de Marruecos. Experimenta la magia del Sahara con nuestros guías locales expertos.",
     "quickLinks": "Enlaces rápidos",
+    "tours": "Tours",
+    "destinations": "Destinos",
+    "about": "Nosotros",
+    "contact": "Contacto",
     "support": "Soporte",
     "faq": "FAQ",
     "help": "Centro de ayuda",
@@ -167,7 +171,28 @@
     "newsletter": "Boletín",
     "newsletterPlaceholder": "Ingresa tu correo",
     "subscribe": "Suscribirse",
-    "allRights": "Todos los derechos reservados"
+    "allRights": "Todos los derechos reservados",
+    "rights": "Todos los derechos reservados."
+  },
+  "newsletter": {
+    "title": "¿Listo para tu aventura en el desierto?",
+    "subtitle": "Únete a 10,000+ aventureros. Obtén ofertas exclusivas, consejos de viaje y acceso anticipado a nuevos tours.",
+    "placeholder": "Ingresa tu correo",
+    "subscribe": "Suscribirse",
+    "subscribing": "Suscribiendo...",
+    "success": "¡Bienvenido a la aventura! Revisa tu bandeja de entrada.",
+    "subscribed": "¡Listo! Revisa tu bandeja de entrada.",
+    "emailRequired": "Por favor ingresa tu correo electrónico",
+    "noSpam": "Sin spam, nunca",
+    "unsubscribe": "Cancela cuando quieras",
+    "exclusive": "Ofertas exclusivas"
+  },
+  "destinations": {
+    "whereToGo": "A dónde ir",
+    "title": "Explora nuestros destinos",
+    "subtitle": "Desde la ciudad roja hasta las dunas doradas, descubre los destinos de aventura más impresionantes de Marruecos.",
+    "tours": "Tours",
+    "explore": "Explorar"
   },
   "validation": {
     "required": "Este campo es obligatorio",

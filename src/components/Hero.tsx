@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Play, MapPin, Star } from "lucide-react";
+import { Play, Star } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import heroImage from "@/assets/hero-desert.jpg";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -25,30 +29,31 @@ const Hero = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-8">
             <Star className="w-4 h-4 text-accent fill-accent" />
             <span className="text-sm font-medium text-primary-foreground">
-              Rated 4.9/5 by 2,000+ adventurers
+              {t("hero.rating", "Rated 4.9/5 by 2,000+ adventurers")}
             </span>
           </div>
 
           {/* Heading */}
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6">
-            Discover the Magic of{" "}
-            <span className="text-gradient">Morocco's Sahara</span>
+            {t("hero.title", "Discover the Magic of")}{" "}
+            <span className="text-gradient">{t("hero.titleHighlight", "Morocco's Sahara")}</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg sm:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10">
-            Premium desert adventures through golden dunes, ancient kasbahs, and
-            starlit camps. Experience Morocco like never before.
+            {t("hero.subtitle", "Premium desert adventures through golden dunes, ancient kasbahs, and starlit camps. Experience Morocco like never before.")}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Button variant="hero" size="xl">
-              Explore Tours
-            </Button>
+            <Link to="/tours">
+              <Button variant="hero" size="xl">
+                {t("hero.exploreTours", "Explore Tours")}
+              </Button>
+            </Link>
             <Button variant="heroOutline" size="xl">
               <Play className="w-5 h-5 mr-2" />
-              Watch Video
+              {t("hero.watchVideo", "Watch Video")}
             </Button>
           </div>
 
@@ -59,7 +64,7 @@ const Hero = () => {
                 50+
               </div>
               <div className="text-sm text-primary-foreground/60">
-                Unique Tours
+                {t("hero.uniqueTours", "Unique Tours")}
               </div>
             </div>
             <div className="text-center border-x border-primary-foreground/20">
@@ -67,7 +72,7 @@ const Hero = () => {
                 4
               </div>
               <div className="text-sm text-primary-foreground/60">
-                Destinations
+                {t("hero.destinations", "Destinations")}
               </div>
             </div>
             <div className="text-center">
@@ -75,7 +80,7 @@ const Hero = () => {
                 10K+
               </div>
               <div className="text-sm text-primary-foreground/60">
-                Happy Riders
+                {t("hero.happyRiders", "Happy Riders")}
               </div>
             </div>
           </div>

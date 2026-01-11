@@ -42,6 +42,7 @@
   },
   "hero": {
     "badge": "Rated 4.9/5 by 2,000+ adventurers",
+    "rating": "Rated 4.9/5 by 2,000+ adventurers",
     "title": "Discover the Magic of",
     "titleHighlight": "Morocco's Sahara",
     "subtitle": "Premium desert adventures through golden dunes, ancient kasbahs, and starlit camps. Experience Morocco like never before.",
@@ -53,6 +54,7 @@
   },
   "featured": {
     "badge": "Explore Morocco",
+    "explore": "Explore Morocco",
     "title": "Featured Desert Adventures",
     "subtitle": "Hand-picked experiences from camel treks to quad adventures, each designed to create unforgettable memories.",
     "viewAll": "View All Tours"
@@ -91,7 +93,11 @@
     "popularity": "Most Popular",
     "allCities": "All Cities",
     "allCategories": "All Categories",
-    "allDurations": "All Durations"
+    "allDurations": "All Durations",
+    "from": "From",
+    "person": "person",
+    "maxGuests": "Max 12",
+    "viewDetails": "View Details"
   },
   "booking": {
     "title": "Book Your Adventure",
@@ -158,6 +164,10 @@
   "footer": {
     "description": "Premium desert adventures through Morocco's most stunning landscapes. Experience the magic of the Sahara with our expert local guides.",
     "quickLinks": "Quick Links",
+    "tours": "Tours",
+    "destinations": "Destinations",
+    "about": "About Us",
+    "contact": "Contact",
     "support": "Support",
     "faq": "FAQ",
     "help": "Help Center",
@@ -167,7 +177,28 @@
     "newsletter": "Newsletter",
     "newsletterPlaceholder": "Enter your email",
     "subscribe": "Subscribe",
-    "allRights": "All rights reserved"
+    "allRights": "All rights reserved",
+    "rights": "All rights reserved."
+  },
+  "newsletter": {
+    "title": "Ready for Your Desert Adventure?",
+    "subtitle": "Join 10,000+ adventurers. Get exclusive deals, travel tips, and early access to new tours.",
+    "placeholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success": "Welcome to the adventure! Check your inbox.",
+    "subscribed": "You're all set! Check your inbox.",
+    "emailRequired": "Please enter your email address",
+    "noSpam": "No spam, ever",
+    "unsubscribe": "Unsubscribe anytime",
+    "exclusive": "Exclusive deals"
+  },
+  "destinations": {
+    "whereToGo": "Where to Go",
+    "title": "Explore Our Destinations",
+    "subtitle": "From the red city to the golden dunes, discover Morocco's most breathtaking adventure destinations.",
+    "tours": "Tours",
+    "explore": "Explore"
   },
   "validation": {
     "required": "This field is required",

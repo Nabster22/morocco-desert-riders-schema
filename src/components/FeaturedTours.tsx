@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { ArrowRight } from "lucide-react";
 import TourCard from "./TourCard";
 import tourCamp from "@/assets/tour-camp.jpg";
 import tourQuad from "@/assets/tour-quad.jpg";
@@ -55,20 +58,21 @@ const tours = [
 ];
 
 const FeaturedTours = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="tours" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-14">
           <span className="text-sm font-semibold text-terracotta uppercase tracking-wider">
-            Explore Morocco
+            {t("featured.explore", "Explore Morocco")}
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
-            Featured Desert Adventures
+            {t("featured.title", "Featured Desert Adventures")}
           </h2>
           <p className="text-muted-foreground text-lg">
-            Hand-picked experiences from camel treks to quad adventures, 
-            each designed to create unforgettable memories.
+            {t("featured.subtitle", "Hand-picked experiences from camel treks to quad adventures, each designed to create unforgettable memories.")}
           </p>
         </div>
 
@@ -81,25 +85,13 @@ const FeaturedTours = () => {
 
         {/* View All Link */}
         <div className="text-center mt-12">
-          <a
-            href="#all-tours"
-            className="inline-flex items-center gap-2 text-terracotta font-semibold hover:gap-3 transition-all duration-300"
+          <Link
+            to="/tours"
+            className="inline-flex items-center gap-2 text-terracotta font-semibold hover:gap-3 transition-all duration-300 group"
           >
-            View All Tours
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </a>
+            {t("featured.viewAll", "View All Tours")}
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>

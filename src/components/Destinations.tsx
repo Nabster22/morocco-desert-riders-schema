@@ -1,4 +1,6 @@
-import { MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { MapPin, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const destinations = [
   {
@@ -32,29 +34,31 @@ const destinations = [
 ];
 
 const Destinations = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="destinations" className="py-20 md:py-28 bg-sand moroccan-pattern">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-14">
           <span className="text-sm font-semibold text-terracotta uppercase tracking-wider">
-            Where to Go
+            {t("destinations.whereToGo", "Where to Go")}
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
-            Explore Our Destinations
+            {t("destinations.title", "Explore Our Destinations")}
           </h2>
           <p className="text-muted-foreground text-lg">
-            From the red city to the golden dunes, discover Morocco's most 
-            breathtaking adventure destinations.
+            {t("destinations.subtitle", "From the red city to the golden dunes, discover Morocco's most breathtaking adventure destinations.")}
           </p>
         </div>
 
         {/* Destinations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {destinations.map((destination, index) => (
-            <div
+            <Link
               key={destination.id}
-              className="group relative h-72 rounded-2xl overflow-hidden cursor-pointer card-hover"
+              to={`/tours?city=${destination.name}`}
+              className="group relative h-72 rounded-2xl overflow-hidden cursor-pointer card-hover block"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Background Gradient */}
@@ -67,7 +71,7 @@ const Destinations = () => {
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-primary-foreground/80 mb-2">
                   <MapPin className="w-4 h-4" />
-                  <span className="text-sm">{destination.tours} Tours</span>
+                  <span className="text-sm">{destination.tours} {t("destinations.tours", "Tours")}</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-primary-foreground mb-1">
                   {destination.name}
@@ -79,24 +83,12 @@ const Destinations = () => {
                 {/* Hover Arrow */}
                 <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="inline-flex items-center gap-2 text-primary-foreground font-medium">
-                    Explore
-                    <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
+                    {t("destinations.explore", "Explore")}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
