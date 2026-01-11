@@ -212,11 +212,54 @@
     "minGuests": "مطلوب ضيف واحد على الأقل",
     "maxGuests": "الحد الأقصى {{max}} ضيوف"
   },
-  "notFound": {
-    "title": "ضائع في الصحراء",
-    "description": "اختفت الصفحة التي تبحث عنها مثل سراب في الصحراء. دعنا نعيدك إلى المسار الصحيح.",
-    "backHome": "العودة للرئيسية",
-    "goBack": "رجوع",
-    "suggestions": "أو استكشف هذه الوجهات الشائعة:"
+  "about": {
+    "heroTitle": "قصتنا",
+    "heroSubtitle": "منذ عام 2008، نشارك سحر الصحراء المغربية مع المغامرين من جميع أنحاء العالم.",
+    "happyTravelers": "مسافر سعيد",
+    "uniqueTours": "جولة فريدة",
+    "yearsExperience": "سنة خبرة",
+    "averageRating": "متوسط التقييم",
+    "ourJourney": "رحلتنا",
+    "journeyTitle": "من أحلام الصحراء إلى الواقع",
+    "whatWeStandFor": "ما نؤمن به",
+    "ourValues": "قيمنا",
+    "meetTheTeam": "تعرف على الفريق",
+    "ourExperts": "خبراء الصحراء لدينا"
+  },
+  "contact": {
+    "heroTitle": "تواصل معنا",
+    "heroSubtitle": "لديك أسئلة؟ يسعدنا سماعك. أرسل لنا رسالة وسنرد في أقرب وقت ممكن.",
+    "contactInfo": "معلومات الاتصال",
+    "sendMessage": "أرسل رسالة",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "hours": "ساعات العمل",
+    "hoursContent": "الإثنين - السبت: 8:00 - 20:00\nالأحد: 9:00 - 18:00",
+    "thankYou": "شكراً لك!",
+    "successMessage": "تم إرسال الرسالة بنجاح! سنتواصل معك قريباً.",
+    "successDescription": "تم إرسال رسالتك. سنرد خلال 24 ساعة.",
+    "sendAnother": "إرسال رسالة أخرى",
+    "form": {
+      "name": "الاسم الكامل",
+      "namePlaceholder": "اسمك",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "your@email.com",
+      "phone": "الهاتف",
+      "phonePlaceholder": "+212 XXX XXX XXX",
+      "subject": "الموضوع",
+      "subjectPlaceholder": "اختر موضوعاً",
+      "message": "الرسالة",
+      "messagePlaceholder": "أخبرنا عن استفسارك...",
+      "send": "إرسال الرسالة",
+      "sending": "جاري الإرسال..."
+    }
+  },
+  "faq": {
+    "heroTitle": "الأسئلة الشائعة",
+    "heroSubtitle": "اعثر على إجابات للأسئلة الشائعة حول جولاتنا والحجز ونصائح السفر.",
+    "stillQuestions": "لا تزال لديك أسئلة؟",
+    "contactUs": "لم تجد الإجابة؟ فريقنا الودود هنا للمساعدة.",
+    "contactButton": "تواصل معنا"
   }
 }

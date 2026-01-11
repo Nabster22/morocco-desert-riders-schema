@@ -218,5 +218,133 @@
     "backHome": "Back to Home",
     "goBack": "Go Back",
     "suggestions": "Or explore these popular destinations:"
+  },
+  "about": {
+    "heroTitle": "Our Story",
+    "heroSubtitle": "Since 2008, we've been sharing the magic of Morocco's Sahara with adventurers from around the world.",
+    "happyTravelers": "Happy Travelers",
+    "uniqueTours": "Unique Tours",
+    "yearsExperience": "Years Experience",
+    "averageRating": "Average Rating",
+    "ourJourney": "Our Journey",
+    "journeyTitle": "From Desert Dreams to Reality",
+    "story1": "Morocco Desert Riders was born from a simple dream: to share the breathtaking beauty of the Moroccan Sahara with the world. Founded in 2008 in Dakhla, our company started with just two Land Rovers and an unwavering passion for adventure.",
+    "story2": "Today, we've grown to become one of Morocco's most trusted desert tour operators, but our core values remain unchanged. We believe in authentic experiences, sustainable tourism, and creating memories that last a lifetime.",
+    "story3": "Every tour we offer is carefully crafted to showcase the best of Morocco – from the golden dunes of Erg Chebbi to the stunning lagoons of Dakhla, from traditional Berber villages to luxury desert camps under the stars.",
+    "whatWeStandFor": "What We Stand For",
+    "ourValues": "Our Values",
+    "values": {
+      "passion": {
+        "title": "Passion for Adventure",
+        "description": "We live and breathe the desert. Our team consists of experienced local guides who know every dune, every oasis, and every hidden gem of the Moroccan Sahara."
+      },
+      "safety": {
+        "title": "Safety First",
+        "description": "Your safety is our priority. All our vehicles are regularly maintained, and our guides are trained in first aid and emergency response."
+      },
+      "sustainability": {
+        "title": "Sustainable Tourism",
+        "description": "We're committed to preserving the beauty of the Sahara for future generations. We practice responsible tourism and support local communities."
+      },
+      "authentic": {
+        "title": "Authentic Experiences",
+        "description": "We offer genuine Moroccan experiences, from traditional Berber hospitality to authentic desert camps under the stars."
+      }
+    },
+    "meetTheTeam": "Meet The Team",
+    "ourExperts": "Our Desert Experts",
+    "team": {
+      "founder": "Founder & Lead Guide",
+      "operations": "Operations Manager",
+      "headGuide": "Head Desert Guide",
+      "ahmedBio": "Born in the Sahara, Ahmed has been guiding desert tours for over 20 years. His passion for sharing Moroccan culture is infectious.",
+      "fatimaBio": "With 10+ years in tourism, Fatima ensures every tour runs smoothly and every guest feels at home.",
+      "hassanBio": "A Berber native, Hassan knows the desert like the back of his hand. His storytelling makes every journey magical."
+    }
+  },
+  "contact": {
+    "heroTitle": "Get in Touch",
+    "heroSubtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "contactInfo": "Contact Information",
+    "sendMessage": "Send us a Message",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Business Hours",
+    "hoursContent": "Mon - Sat: 8:00 AM - 8:00 PM\nSun: 9:00 AM - 6:00 PM",
+    "thankYou": "Thank You!",
+    "successMessage": "Message sent successfully! We'll get back to you soon.",
+    "successDescription": "Your message has been sent. We'll get back to you within 24 hours.",
+    "sendAnother": "Send Another Message",
+    "subjects": {
+      "general": "General Inquiry",
+      "booking": "Booking Question",
+      "custom": "Custom Tour Request",
+      "support": "Customer Support",
+      "partnership": "Partnership Opportunity"
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone",
+      "phonePlaceholder": "+212 XXX XXX XXX",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your inquiry...",
+      "send": "Send Message",
+      "sending": "Sending..."
+    }
+  },
+  "faq": {
+    "heroTitle": "Frequently Asked Questions",
+    "heroSubtitle": "Find answers to common questions about our tours, booking process, and travel tips.",
+    "stillQuestions": "Still Have Questions?",
+    "contactUs": "Can't find the answer you're looking for? Our friendly team is here to help.",
+    "contactButton": "Contact Us",
+    "categories": {
+      "booking": "Booking & Reservations",
+      "tours": "Tours & Experiences",
+      "safety": "Safety & Health",
+      "logistics": "Logistics & Transport"
+    },
+    "booking": {
+      "q1": "How do I book a tour?",
+      "a1": "You can book a tour directly through our website by selecting your preferred tour, choosing your dates, and completing the booking form. Alternatively, you can contact us via phone or email, and our team will assist you with the booking process.",
+      "q2": "What is your cancellation policy?",
+      "a2": "We offer free cancellation up to 7 days before your tour start date. Cancellations made between 3-7 days before the tour will receive a 50% refund. Cancellations less than 3 days before the tour are non-refundable. We recommend travel insurance for added protection.",
+      "q3": "Can I modify my booking after confirmation?",
+      "a3": "Yes, you can modify your booking up to 48 hours before the tour start date, subject to availability. Changes may result in price adjustments. Please contact our customer service team to request modifications.",
+      "q4": "What payment methods do you accept?",
+      "a4": "We accept major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. For some tours, we also offer the option to pay a deposit online and the remaining balance in cash upon arrival."
+    },
+    "tours": {
+      "q1": "What should I pack for a desert tour?",
+      "a1": "We recommend packing comfortable, loose-fitting clothing in layers, as desert temperatures can vary significantly between day and night. Essentials include: sunscreen, sunglasses, a hat, comfortable walking shoes, a warm jacket for evenings, a scarf or shawl for wind/sand protection, and a camera. We provide detailed packing lists upon booking.",
+      "q2": "Are the tours suitable for children?",
+      "a2": "Most of our tours are family-friendly and welcome children of all ages. Some adventure activities like quad biking have age restrictions (minimum 16 years to drive). We offer special family packages with activities tailored for younger travelers. Please inquire about specific tour suitability when booking.",
+      "q3": "What's included in the tour price?",
+      "a3": "Our tour prices typically include: transportation in comfortable 4x4 vehicles, accommodation as specified in the itinerary, meals (breakfast, lunch, and dinner), guided tours, and all activities mentioned. Personal expenses, travel insurance, and gratuities are usually not included. Each tour listing has a detailed breakdown of inclusions.",
+      "q4": "What's the difference between Standard and Premium packages?",
+      "a4": "Premium packages offer enhanced experiences including: upgraded accommodations (luxury desert camps instead of standard camps), private vehicles rather than shared, gourmet meals with more options, additional activities, and more personalized attention with lower guest-to-guide ratios."
+    },
+    "safety": {
+      "q1": "Is it safe to travel in the Moroccan desert?",
+      "a1": "Yes, desert travel with an experienced operator like Morocco Desert Riders is very safe. All our guides are certified, our vehicles are regularly maintained, and we carry satellite communication devices for emergencies. We follow strict safety protocols and are well-versed in desert conditions.",
+      "q2": "What if I have dietary restrictions?",
+      "a2": "We accommodate various dietary requirements including vegetarian, vegan, halal, gluten-free, and food allergies. Please inform us of any dietary needs when booking, and our team will ensure appropriate meals are prepared throughout your tour.",
+      "q3": "Do I need any vaccinations to visit Morocco?",
+      "a3": "No specific vaccinations are required for Morocco, but we recommend being up-to-date on routine vaccinations. Consult your healthcare provider before traveling for personalized medical advice. It's also advisable to carry a basic first-aid kit and any personal medications."
+    },
+    "logistics": {
+      "q1": "Do you offer airport pickup?",
+      "a1": "Yes, we offer airport transfers from major Moroccan airports including Marrakech, Fes, Casablanca, Agadir, and Dakhla. Airport pickup can be added to any tour package. We'll meet you at the arrivals hall with a sign bearing your name.",
+      "q2": "What type of vehicles do you use?",
+      "a2": "We use modern, well-maintained 4x4 Toyota Land Cruisers and similar vehicles equipped for desert conditions. All vehicles have air conditioning, first-aid kits, and communication equipment. For larger groups, we use comfortable minibuses for road portions of the journey.",
+      "q3": "Can I request a custom/private tour?",
+      "a3": "Absolutely! We specialize in creating custom itineraries tailored to your interests, timeline, and budget. Whether you want a romantic getaway, a family adventure, or a photography expedition, our team will work with you to design the perfect experience. Contact us with your requirements for a personalized quote."
+    }
   }
 }

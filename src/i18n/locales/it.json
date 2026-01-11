@@ -212,11 +212,54 @@
     "minGuests": "Minimo 1 ospite richiesto",
     "maxGuests": "Massimo {{max}} ospiti consentiti"
   },
-  "notFound": {
-    "title": "Perso nel deserto",
-    "description": "La pagina che cerchi è svanita come un miraggio nel Sahara. Ti riportiamo sulla strada giusta.",
-    "backHome": "Torna alla home",
-    "goBack": "Indietro",
-    "suggestions": "Oppure esplora queste destinazioni popolari:"
+  "about": {
+    "heroTitle": "La nostra storia",
+    "heroSubtitle": "Dal 2008, condividiamo la magia del Sahara marocchino con avventurieri di tutto il mondo.",
+    "happyTravelers": "Viaggiatori soddisfatti",
+    "uniqueTours": "Tour unici",
+    "yearsExperience": "Anni di esperienza",
+    "averageRating": "Valutazione media",
+    "ourJourney": "Il nostro viaggio",
+    "journeyTitle": "Dai sogni del deserto alla realtà",
+    "whatWeStandFor": "I nostri principi",
+    "ourValues": "I nostri valori",
+    "meetTheTeam": "Il team",
+    "ourExperts": "I nostri esperti del deserto"
+  },
+  "contact": {
+    "heroTitle": "Contattaci",
+    "heroSubtitle": "Hai domande? Saremo felici di sentirti. Inviaci un messaggio e risponderemo il prima possibile.",
+    "contactInfo": "Informazioni di contatto",
+    "sendMessage": "Invia un messaggio",
+    "address": "Indirizzo",
+    "phone": "Telefono",
+    "email": "Email",
+    "hours": "Orari di apertura",
+    "hoursContent": "Lun - Sab: 8:00 - 20:00\nDom: 9:00 - 18:00",
+    "thankYou": "Grazie!",
+    "successMessage": "Messaggio inviato con successo! Ti risponderemo presto.",
+    "successDescription": "Il tuo messaggio è stato inviato. Risponderemo entro 24 ore.",
+    "sendAnother": "Invia un altro messaggio",
+    "form": {
+      "name": "Nome completo",
+      "namePlaceholder": "Il tuo nome",
+      "email": "Email",
+      "emailPlaceholder": "tua@email.com",
+      "phone": "Telefono",
+      "phonePlaceholder": "+212 XXX XXX XXX",
+      "subject": "Oggetto",
+      "subjectPlaceholder": "Seleziona un oggetto",
+      "message": "Messaggio",
+      "messagePlaceholder": "Raccontaci la tua richiesta...",
+      "send": "Invia messaggio",
+      "sending": "Invio in corso..."
+    }
+  },
+  "faq": {
+    "heroTitle": "Domande frequenti",
+    "heroSubtitle": "Trova risposte alle domande comuni sui nostri tour, prenotazioni e consigli di viaggio.",
+    "stillQuestions": "Hai ancora domande?",
+    "contactUs": "Non trovi la risposta? Il nostro team è qui per aiutarti.",
+    "contactButton": "Contattaci"
   }
 }
