@@ -7,10 +7,9 @@ const Footer = () => {
 
   const quickLinks = [
     { label: t("footer.tours", "Tours"), to: "/tours" },
-    { label: t("footer.destinations", "Destinations"), to: "/tours" },
-    { label: t("footer.about", "About Us"), to: "/" },
-    { label: t("footer.contact", "Contact"), to: "/" },
-    { label: t("footer.faq", "FAQ"), to: "/" },
+    { label: t("footer.about", "About Us"), to: "/about" },
+    { label: t("footer.contact", "Contact"), to: "/contact" },
+    { label: t("footer.faq", "FAQ"), to: "/faq" },
   ];
 
   const cities = [
@@ -116,22 +115,23 @@ const Footer = () => {
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-terracotta mt-0.5" />
+                <MapPin className="w-5 h-5 text-terracotta mt-0.5 flex-shrink-0" />
                 <span className="text-primary-foreground/70 text-sm">
-                  Avenue Mohammed V, Marrakech 40000, Morocco
+                  Mini Villa N 83 Lot La Verda<br />
+                  73000 - Dakhla, Maroc
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-terracotta" />
+                <Phone className="w-5 h-5 text-terracotta flex-shrink-0" />
                 <a 
-                  href="tel:+212524123456" 
+                  href="tel:+212652299776" 
                   className="text-primary-foreground/70 text-sm hover:text-terracotta transition-colors"
                 >
-                  +212 524 123 456
+                  +212 652 299 776
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-terracotta" />
+                <Mail className="w-5 h-5 text-terracotta flex-shrink-0" />
                 <a 
                   href="mailto:info@moroccodesert.riders" 
                   className="text-primary-foreground/70 text-sm hover:text-terracotta transition-colors"
@@ -150,10 +150,10 @@ const Footer = () => {
               © {new Date().getFullYear()} Morocco Desert Riders. {t("footer.rights", "All rights reserved.")}
             </p>
             <div className="flex gap-6">
-              <Link to="/" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
+              <Link to="/faq" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
                 {t("footer.privacy", "Privacy Policy")}
               </Link>
-              <Link to="/" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
+              <Link to="/faq" className="text-primary-foreground/50 hover:text-primary-foreground text-sm">
                 {t("footer.terms", "Terms of Service")}
               </Link>
             </div>

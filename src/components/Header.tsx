@@ -15,9 +15,8 @@ const Header = () => {
 
   const navLinks = [
     { name: t('common.tours'), href: "/tours" },
-    { name: t('common.destinations'), href: "/tours" },
-    { name: t('common.about'), href: "/" },
-    { name: t('common.contact'), href: "/" },
+    { name: t('common.about'), href: "/about" },
+    { name: t('common.contact'), href: "/contact" },
   ];
 
   useEffect(() => {

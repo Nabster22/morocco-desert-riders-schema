@@ -11,6 +11,9 @@ import TourDetail from "./pages/TourDetail";
 import Booking from "./pages/Booking";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminTours from "./pages/admin/Tours";
 import AdminBookings from "./pages/admin/Bookings";
@@ -32,6 +35,9 @@ const App = () => (
             <Route path="/tours/:id" element={<TourDetail />} />
             <Route path="/booking/:tourId" element={<Booking />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route 
               path="/profile" 
               element={
