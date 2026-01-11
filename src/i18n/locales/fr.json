@@ -158,6 +158,10 @@
   "footer": {
     "description": "Aventures désertiques premium à travers les paysages les plus époustouflants du Maroc. Vivez la magie du Sahara avec nos guides locaux experts.",
     "quickLinks": "Liens rapides",
+    "tours": "Circuits",
+    "destinations": "Destinations",
+    "about": "À propos",
+    "contact": "Contact",
     "support": "Support",
     "faq": "FAQ",
     "help": "Centre d'aide",
@@ -167,7 +171,28 @@
     "newsletter": "Newsletter",
     "newsletterPlaceholder": "Entrez votre e-mail",
     "subscribe": "S'abonner",
-    "allRights": "Tous droits réservés"
+    "allRights": "Tous droits réservés",
+    "rights": "Tous droits réservés."
+  },
+  "newsletter": {
+    "title": "Prêt pour votre aventure désertique?",
+    "subtitle": "Rejoignez 10 000+ aventuriers. Obtenez des offres exclusives, des conseils de voyage et un accès anticipé aux nouveaux circuits.",
+    "placeholder": "Entrez votre e-mail",
+    "subscribe": "S'abonner",
+    "subscribing": "Inscription...",
+    "success": "Bienvenue dans l'aventure! Vérifiez votre boîte de réception.",
+    "subscribed": "C'est tout bon! Vérifiez votre boîte de réception.",
+    "emailRequired": "Veuillez entrer votre adresse e-mail",
+    "noSpam": "Pas de spam, jamais",
+    "unsubscribe": "Désabonnement à tout moment",
+    "exclusive": "Offres exclusives"
+  },
+  "destinations": {
+    "whereToGo": "Où aller",
+    "title": "Explorez nos destinations",
+    "subtitle": "De la ville rouge aux dunes dorées, découvrez les destinations d'aventure les plus époustouflantes du Maroc.",
+    "tours": "Circuits",
+    "explore": "Explorer"
   },
   "validation": {
     "required": "Ce champ est obligatoire",

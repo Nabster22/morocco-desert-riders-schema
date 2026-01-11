@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 import { MapPin, Clock, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface TourCardProps {
+  id: number;
   image: string;
   title: string;
   city: string;
@@ -14,6 +17,7 @@ interface TourCardProps {
 }
 
 const TourCard = ({
+  id,
   image,
   title,
   city,
@@ -24,6 +28,8 @@ const TourCard = ({
   pricePremium,
   category,
 }: TourCardProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="group bg-card rounded-2xl overflow-hidden shadow-card card-hover">
       {/* Image */}
@@ -69,24 +75,26 @@ const TourCard = ({
           </div>
           <div className="flex items-center gap-1">
             <Users className="w-4 h-4" />
-            <span>Max 12</span>
+            <span>{t("tour.maxGuests", "Max 12")}</span>
           </div>
         </div>
         
         {/* Price */}
         <div className="flex items-end justify-between pt-4 border-t border-border">
           <div>
-            <span className="text-xs text-muted-foreground">From</span>
+            <span className="text-xs text-muted-foreground">{t("tour.from", "From")}</span>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-display font-bold text-terracotta">
                 ${priceStandard}
               </span>
-              <span className="text-sm text-muted-foreground">/person</span>
+              <span className="text-sm text-muted-foreground">/{t("tour.person", "person")}</span>
             </div>
           </div>
-          <Button variant="outline" size="sm">
-            View Details
-          </Button>
+          <Link to={`/tours/${id}`}>
+            <Button variant="outline" size="sm">
+              {t("tour.viewDetails", "View Details")}
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
