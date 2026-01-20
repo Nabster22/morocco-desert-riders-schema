@@ -38,7 +38,15 @@
     "toggleTheme": "Cambiar tema",
     "lightMode": "Claro",
     "darkMode": "Oscuro",
-    "systemMode": "Sistema"
+    "systemMode": "Sistema",
+    "close": "Cerrar"
+  },
+  "cookies": {
+    "title": "Usamos cookies",
+    "description": "Usamos cookies para mejorar tu experiencia de navegación, ofrecer contenido personalizado y analizar nuestro tráfico. Al hacer clic en \"Aceptar todo\", consientes nuestro uso de cookies.",
+    "learnMore": "Más información",
+    "accept": "Aceptar todo",
+    "reject": "Rechazar todo"
   },
   "hero": {
     "badge": "Valorado 4.9/5 por más de 2,000 aventureros",

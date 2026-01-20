@@ -38,7 +38,15 @@
     "toggleTheme": "切换主题",
     "lightMode": "浅色",
     "darkMode": "深色",
-    "systemMode": "系统"
+    "systemMode": "系统",
+    "close": "关闭"
+  },
+  "cookies": {
+    "title": "我们使用Cookie",
+    "description": "我们使用Cookie来提升您的浏览体验、提供个性化内容并分析我们的流量。点击「全部接受」即表示您同意我们使用Cookie。",
+    "learnMore": "了解更多",
+    "accept": "全部接受",
+    "reject": "全部拒绝"
   },
   "hero": {
     "badge": "2,000+探险者评分4.9/5",

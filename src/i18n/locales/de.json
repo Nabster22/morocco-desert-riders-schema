@@ -38,7 +38,15 @@
     "toggleTheme": "Design wechseln",
     "lightMode": "Hell",
     "darkMode": "Dunkel",
-    "systemMode": "System"
+    "systemMode": "System",
+    "close": "Schließen"
+  },
+  "cookies": {
+    "title": "Wir verwenden Cookies",
+    "description": "Wir verwenden Cookies, um Ihr Surferlebnis zu verbessern, personalisierte Inhalte bereitzustellen und unseren Traffic zu analysieren. Durch Klicken auf 'Alle akzeptieren' stimmen Sie unserer Verwendung von Cookies zu.",
+    "learnMore": "Mehr erfahren",
+    "accept": "Alle akzeptieren",
+    "reject": "Alle ablehnen"
   },
   "hero": {
     "badge": "Bewertet mit 4.9/5 von 2.000+ Abenteurern",
