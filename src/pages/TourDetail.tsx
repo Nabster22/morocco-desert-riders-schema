@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
   Star,
@@ -154,9 +155,123 @@ const TourDetail = () => {
     );
   }
 
+  // Generate structured data for SEO
+  const tourStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    "name": tour.name,
+    "description": tour.description,
+    "touristType": "Adventure seekers",
+    "image": tourImages[0],
+    "url": `https://moroccodesertexpeditions.com/tours/${tour.id}`,
+    "provider": {
+      "@type": "TravelAgency",
+      "name": "Morocco Desert Riders",
+      "url": "https://moroccodesertexpeditions.com",
+      "telephone": "+212652299776"
+    },
+    "itinerary": {
+      "@type": "ItemList",
+      "numberOfItems": itinerary.length,
+      "itemListElement": itinerary.map((day: any, index: number) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": day.title,
+        "description": day.description
+      }))
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": tour.price,
+      "priceCurrency": "MAD",
+      "availability": "https://schema.org/InStock",
+      "validFrom": new Date().toISOString().split('T')[0]
+    },
+    ...(tour.avg_rating && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": Number(tour.avg_rating).toFixed(1),
+        "reviewCount": tour.review_count || 0,
+        "bestRating": 5,
+        "worstRating": 1
+      }
+    }),
+    ...(reviews.length > 0 && {
+      "review": reviews.slice(0, 5).map((review: any) => ({
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": review.user_name
+        },
+        "datePublished": review.created_at,
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": review.rating,
+          "bestRating": 5,
+          "worstRating": 1
+        },
+        "reviewBody": review.comment
+      }))
+    })
+  };
+
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://moroccodesertexpeditions.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tours",
+        "item": "https://moroccodesertexpeditions.com/tours"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": tour.name,
+        "item": `https://moroccodesertexpeditions.com/tours/${tour.id}`
+      }
+    ]
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <>
+      <Helmet>
+        <title>{`${tour.name} | Morocco Desert Riders`}</title>
+        <meta name="description" content={`${tour.description?.substring(0, 155)}...`} />
+        <meta name="keywords" content={`${tour.name}, Morocco desert tour, ${cityName} adventure, Sahara experience, ${tour.category_name || 'desert tour'}`} />
+        <link rel="canonical" href={`https://moroccodesertexpeditions.com/tours/${tour.id}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={`${tour.name} | Morocco Desert Riders`} />
+        <meta property="og:description" content={tour.description?.substring(0, 200)} />
+        <meta property="og:image" content={tourImages[0]} />
+        <meta property="og:url" content={`https://moroccodesertexpeditions.com/tours/${tour.id}`} />
+        <meta property="og:type" content="product" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${tour.name} | Morocco Desert Riders`} />
+        <meta name="twitter:description" content={tour.description?.substring(0, 200)} />
+        <meta name="twitter:image" content={tourImages[0]} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(tourStructuredData)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbStructuredData)}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen bg-background">
+        <Header />
 
       {/* Breadcrumb */}
       <div className="pt-20 bg-card border-b border-border">
@@ -500,6 +615,7 @@ const TourDetail = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 
