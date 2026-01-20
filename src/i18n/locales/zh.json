@@ -97,7 +97,12 @@
     "from": "起价",
     "person": "每人",
     "maxGuests": "最多12人",
-    "viewDetails": "查看详情"
+    "viewDetails": "查看详情",
+    "toursFound": "个旅程",
+    "clearFilters": "清除筛选",
+    "clearAllFilters": "清除所有筛选",
+    "noToursFound": "未找到旅程",
+    "tryAdjustingFilters": "我们找不到符合您筛选条件的旅程。请尝试调整搜索条件。"
   },
   "booking": {
     "title": "预订您的探险",

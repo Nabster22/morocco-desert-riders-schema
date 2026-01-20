@@ -97,7 +97,12 @@
     "from": "من",
     "person": "شخص",
     "maxGuests": "الحد الأقصى 12",
-    "viewDetails": "عرض التفاصيل"
+    "viewDetails": "عرض التفاصيل",
+    "toursFound": "جولة",
+    "clearFilters": "مسح الفلاتر",
+    "clearAllFilters": "مسح جميع الفلاتر",
+    "noToursFound": "لم يتم العثور على جولات",
+    "tryAdjustingFilters": "لم نتمكن من العثور على جولات تتطابق مع الفلاتر الخاصة بك. حاول تعديل معايير البحث."
   },
   "booking": {
     "title": "احجز مغامرتك",

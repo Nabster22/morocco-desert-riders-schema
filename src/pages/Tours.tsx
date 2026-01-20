@@ -175,7 +175,7 @@ const Tours = () => {
       {hasActiveFilters && (
         <Button variant="outline" className="w-full" onClick={clearFilters}>
           <X className="h-4 w-4 mr-2" />
-          Clear Filters
+          {t('tour.clearFilters')}
         </Button>
       )}
     </div>
@@ -208,14 +208,14 @@ const Tours = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-medium mb-4"
-            >
-              <Sparkles className="w-4 h-4" />
-              Discover Morocco
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-sm font-medium mb-4 rtl:flex-row-reverse"
+              >
+                <Sparkles className="w-4 h-4" />
+                {t('featured.explore')}
             </motion.div>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               {t('common.tours')}
@@ -272,7 +272,7 @@ const Tours = () => {
                     </SheetContent>
                   </Sheet>
                   <span className="text-muted-foreground text-sm">
-                    {tours.length} tours found
+                    {tours.length} {t('tour.toursFound')}
                   </span>
                 </div>
 
@@ -356,7 +356,7 @@ const Tours = () => {
                               {/* Price on image */}
                               <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
                                 <div>
-                                  <span className="text-white/80 text-sm">From</span>
+                                  <span className="text-white/80 text-sm">{t('common.from')}</span>
                                   <div className="text-white text-2xl font-bold">
                                     ${tour.price_standard}
                                   </div>
@@ -409,14 +409,14 @@ const Tours = () => {
                       <Search className="h-10 w-10 text-muted-foreground" />
                     </div>
                     <h3 className="text-xl font-semibold text-foreground mb-2">
-                      No tours found
+                      {t('tour.noToursFound')}
                     </h3>
                     <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                      We couldn't find any tours matching your filters. Try adjusting your search criteria.
+                      {t('tour.tryAdjustingFilters')}
                     </p>
                     <Button variant="outline" onClick={clearFilters}>
                       <X className="h-4 w-4 mr-2" />
-                      Clear All Filters
+                      {t('tour.clearAllFilters')}
                     </Button>
                   </motion.div>
                 )}

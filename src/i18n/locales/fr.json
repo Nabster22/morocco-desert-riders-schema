@@ -97,7 +97,12 @@
     "from": "À partir de",
     "person": "personne",
     "maxGuests": "Max 12",
-    "viewDetails": "Voir les détails"
+    "viewDetails": "Voir les détails",
+    "toursFound": "circuits trouvés",
+    "clearFilters": "Effacer les filtres",
+    "clearAllFilters": "Effacer tous les filtres",
+    "noToursFound": "Aucun circuit trouvé",
+    "tryAdjustingFilters": "Nous n'avons trouvé aucun circuit correspondant à vos filtres. Essayez de modifier vos critères de recherche."
   },
   "booking": {
     "title": "Réservez votre aventure",
