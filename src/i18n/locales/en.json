@@ -97,7 +97,12 @@
     "from": "From",
     "person": "person",
     "maxGuests": "Max 12",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "toursFound": "tours found",
+    "clearFilters": "Clear Filters",
+    "clearAllFilters": "Clear All Filters",
+    "noToursFound": "No tours found",
+    "tryAdjustingFilters": "We couldn't find any tours matching your filters. Try adjusting your search criteria."
   },
   "booking": {
     "title": "Book Your Adventure",

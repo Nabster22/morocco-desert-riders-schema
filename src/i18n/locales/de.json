@@ -97,7 +97,12 @@
     "from": "Ab",
     "person": "Person",
     "maxGuests": "Max. 12",
-    "viewDetails": "Details ansehen"
+    "viewDetails": "Details ansehen",
+    "toursFound": "Touren gefunden",
+    "clearFilters": "Filter löschen",
+    "clearAllFilters": "Alle Filter löschen",
+    "noToursFound": "Keine Touren gefunden",
+    "tryAdjustingFilters": "Wir konnten keine Touren finden, die Ihren Filtern entsprechen. Versuchen Sie, Ihre Suchkriterien anzupassen."
   },
   "booking": {
     "title": "Buchen Sie Ihr Abenteuer",

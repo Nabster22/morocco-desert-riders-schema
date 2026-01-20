@@ -97,7 +97,12 @@
     "from": "Desde",
     "person": "persona",
     "maxGuests": "Máx 12",
-    "viewDetails": "Ver detalles"
+    "viewDetails": "Ver detalles",
+    "toursFound": "tours encontrados",
+    "clearFilters": "Limpiar filtros",
+    "clearAllFilters": "Limpiar todos los filtros",
+    "noToursFound": "No se encontraron tours",
+    "tryAdjustingFilters": "No pudimos encontrar tours que coincidan con tus filtros. Intenta ajustar tus criterios de búsqueda."
   },
   "booking": {
     "title": "Reserva tu aventura",
