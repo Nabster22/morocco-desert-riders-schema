@@ -1,6 +1,7 @@
 # 🚀 Quick Deployment Guide - Morocco Desert Riders
 
 ## Prerequisites
+
 - cPanel hosting with Node.js support
 - MySQL/MariaDB database
 - SSH access (recommended) or cPanel Terminal
@@ -11,13 +12,16 @@
 ## 📦 Step 1: Prepare Files
 
 ### Build Frontend
+
 ```bash
 # On your local machine
 npm run build
 ```
+
 This creates `dist/` folder.
 
 ### Backend Files
+
 Copy entire `backend-api/` folder contents.
 
 ---
@@ -35,6 +39,7 @@ Copy entire `backend-api/` folder contents.
 
 1. **Upload** `backend-api/` contents to `/home/username/api/`
 2. **Create `.env`** from `.env.production`:
+
    ```env
    DB_HOST=localhost
    DB_USER=cpaneluser_moroccodesert_user
@@ -46,6 +51,7 @@ Copy entire `backend-api/` folder contents.
    ```
 
 3. **Install dependencies** (SSH or Terminal):
+
    ```bash
    cd /home/username/api
    npm install --production
@@ -89,12 +95,12 @@ Copy entire `backend-api/` folder contents.
 
 ## 🔧 Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| 500 Error | Check `.htaccess`, verify `mod_rewrite` enabled |
+| Issue                 | Solution                                            |
+| --------------------- | --------------------------------------------------- |
+| 500 Error             | Check `.htaccess`, verify `mod_rewrite` enabled     |
 | API Connection Failed | Check CORS_ORIGIN in `.env`, verify Node.js running |
-| Database Error | Verify credentials, check user privileges |
-| Blank Page | Ensure `.htaccess` uploaded, check browser console |
+| Database Error        | Verify credentials, check user privileges           |
+| Blank Page            | Ensure `.htaccess` uploaded, check browser console  |
 
 ---
 
@@ -118,8 +124,11 @@ Copy entire `backend-api/` folder contents.
 ## 📚 Full Documentation
 
 See `backend-api/DEPLOYMENT.md` for complete guide including:
+
 - Detailed step-by-step instructions
 - Cron job setup
 - PM2 configuration
 - Security hardening
 - Backup scripts
+  User:
+  Database:
