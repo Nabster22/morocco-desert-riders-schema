@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "homeTitle": "Morocco Desert Riders | Excursions Premium dans le Désert du Sahara",
+    "homeDescription": "Découvrez la magie du désert du Sahara au Maroc avec des excursions premium incluant balades à dos de chameau, quad et camping de luxe. Noté 4.9/5 par plus de 2000 aventuriers."
+  },
   "common": {
     "home": "Accueil",
     "tours": "Circuits",
@@ -39,7 +43,9 @@
     "lightMode": "Clair",
     "darkMode": "Sombre",
     "systemMode": "Système",
-    "close": "Fermer"
+    "close": "Fermer",
+    "adminDashboard": "Tableau de bord Admin",
+    "profile": "Mon Profil"
   },
   "cookies": {
     "title": "Nous utilisons des cookies",

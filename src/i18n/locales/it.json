@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "homeTitle": "Morocco Desert Riders | Tour Premium nel Deserto del Sahara",
+    "homeDescription": "Scopri la magia del Deserto del Sahara in Marocco con tour premium che includono gite in cammello, quad e campeggio di lusso. Valutato 4.9/5 da oltre 2000 avventurieri."
+  },
   "common": {
     "home": "Home",
     "tours": "Tour",
@@ -39,7 +43,9 @@
     "lightMode": "Chiaro",
     "darkMode": "Scuro",
     "systemMode": "Sistema",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "adminDashboard": "Pannello di Amministrazione",
+    "profile": "Il mio Profilo"
   },
   "cookies": {
     "title": "Utilizziamo i cookie",

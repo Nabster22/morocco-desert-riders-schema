@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "homeTitle": "Morocco Desert Riders | Premium Sahara Desert Tours & Adventures",
+    "homeDescription": "Discover the magic of Morocco's Sahara Desert with premium tours including camel rides, quad biking, and luxury desert camping. Rated 4.9/5 by 2000+ adventurers."
+  },
   "common": {
     "home": "Home",
     "tours": "Tours",
@@ -39,7 +43,9 @@
     "lightMode": "Light",
     "darkMode": "Dark",
     "systemMode": "System",
-    "close": "Close"
+    "close": "Close",
+    "adminDashboard": "Admin Dashboard",
+    "profile": "My Profile"
   },
   "cookies": {
     "title": "We use cookies",

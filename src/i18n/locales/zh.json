@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "homeTitle": "Morocco Desert Riders | 优质撒哈拉沙漠之旅和冒险",
+    "homeDescription": "通过骆驼骑行、四轮摩托车和豪华沙漠露营等优质旅游项目，探索摩洛哥撒哈拉沙漠的魔力。2000多名冒险者评分4.9/5。"
+  },
   "common": {
     "home": "首页",
     "tours": "旅游",
@@ -39,7 +43,9 @@
     "lightMode": "浅色",
     "darkMode": "深色",
     "systemMode": "系统",
-    "close": "关闭"
+    "close": "关闭",
+    "adminDashboard": "管理员面板",
+    "profile": "我的资料"
   },
   "cookies": {
     "title": "我们使用Cookie",
