@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "homeTitle": "Morocco Desert Riders | Premium Sahara Wüstentouren & Abenteuer",
+    "homeDescription": "Entdecken Sie die Magie der Sahara in Marokko mit Premium-Touren inklusive Kamelreiten, Quad-Fahren und Luxus-Wüstencamping. Bewertet mit 4,9/5 von über 2000 Abenteurern."
+  },
   "common": {
     "home": "Startseite",
     "tours": "Touren",
@@ -39,7 +43,9 @@
     "lightMode": "Hell",
     "darkMode": "Dunkel",
     "systemMode": "System",
-    "close": "Schließen"
+    "close": "Schließen",
+    "adminDashboard": "Admin-Dashboard",
+    "profile": "Mein Profil"
   },
   "cookies": {
     "title": "Wir verwenden Cookies",

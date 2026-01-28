@@ -1,17 +1,31 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, User, LogOut, LayoutDashboard } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
-
+import { useAuth } from "@/contexts/AuthContext";
 const Header = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   const navLinks = [
     { name: t('common.tours'), href: "/tours" },
@@ -115,21 +129,77 @@ const Header = () => {
               >
                 <LanguageSwitcher />
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <Link to="/login">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  >
-                    {t('common.login')}
-                  </Button>
-                </Link>
-              </motion.div>
+              {isAuthenticated ? (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="text-muted-foreground hover:text-foreground hover:bg-muted/50 gap-2"
+                      >
+                        <div className="w-7 h-7 rounded-full bg-terracotta/20 flex items-center justify-center">
+                          <User className="h-4 w-4 text-terracotta" />
+                        </div>
+                        <span className="hidden lg:inline">{user?.name?.split(' ')[0]}</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <div className="px-2 py-1.5 text-sm font-medium">
+                        {user?.name}
+                      </div>
+                      <div className="px-2 pb-1.5 text-xs text-muted-foreground">
+                        {user?.email}
+                      </div>
+                      <DropdownMenuSeparator />
+                      {isAdmin && (
+                        <>
+                          <DropdownMenuItem asChild>
+                            <Link to="/admin" className="flex items-center gap-2 cursor-pointer">
+                              <LayoutDashboard className="h-4 w-4" />
+                              {t('common.adminDashboard', 'Admin Dashboard')}
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                        </>
+                      )}
+                      <DropdownMenuItem asChild>
+                        <Link to="/profile" className="flex items-center gap-2 cursor-pointer">
+                          <User className="h-4 w-4" />
+                          {t('common.profile', 'My Profile')}
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem 
+                        onClick={handleLogout}
+                        className="flex items-center gap-2 cursor-pointer text-destructive focus:text-destructive"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        {t('common.logout', 'Logout')}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <Link to="/login">
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    >
+                      {t('common.login')}
+                    </Button>
+                  </Link>
+                </motion.div>
+              )}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -247,11 +317,43 @@ const Header = () => {
                     <span className="text-sm text-muted-foreground">{t('common.language')}</span>
                     <LanguageSwitcher />
                   </div>
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="outline" className="w-full">
-                      {t('common.login')}
-                    </Button>
-                  </Link>
+                  
+                  {isAuthenticated ? (
+                    <>
+                      {isAdmin && (
+                        <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
+                          <Button variant="outline" className="w-full gap-2">
+                            <LayoutDashboard className="h-4 w-4" />
+                            {t('common.adminDashboard', 'Admin Dashboard')}
+                          </Button>
+                        </Link>
+                      )}
+                      <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
+                        <Button variant="outline" className="w-full gap-2">
+                          <User className="h-4 w-4" />
+                          {t('common.profile', 'My Profile')}
+                        </Button>
+                      </Link>
+                      <Button 
+                        variant="ghost" 
+                        className="w-full gap-2 text-destructive hover:text-destructive"
+                        onClick={() => {
+                          handleLogout();
+                          setIsMenuOpen(false);
+                        }}
+                      >
+                        <LogOut className="h-4 w-4" />
+                        {t('common.logout', 'Logout')}
+                      </Button>
+                    </>
+                  ) : (
+                    <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                      <Button variant="outline" className="w-full">
+                        {t('common.login')}
+                      </Button>
+                    </Link>
+                  )}
+                  
                   <Link to="/tours" onClick={() => setIsMenuOpen(false)}>
                     <Button variant="hero" className="w-full shadow-lg shadow-terracotta/20">
                       {t('common.bookNow')}

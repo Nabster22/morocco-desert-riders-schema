@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "homeTitle": "Morocco Desert Riders | Tours Premium en el Desierto del Sahara",
+    "homeDescription": "Descubre la magia del Desierto del Sahara en Marruecos con tours premium que incluyen paseos en camello, quad y acampada de lujo. Valorado 4.9/5 por más de 2000 aventureros."
+  },
   "common": {
     "home": "Inicio",
     "tours": "Tours",
@@ -39,7 +43,9 @@
     "lightMode": "Claro",
     "darkMode": "Oscuro",
     "systemMode": "Sistema",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "adminDashboard": "Panel de Administración",
+    "profile": "Mi Perfil"
   },
   "cookies": {
     "title": "Usamos cookies",
