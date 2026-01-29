@@ -111,7 +111,7 @@ const Tours = () => {
           <SelectContent>
             <SelectItem value="all">{t('tour.allCities')}</SelectItem>
             {cities.map((city: any) => (
-              <SelectItem key={city.id} value={city.name}>
+              <SelectItem key={city.id} value={city.id}>
                 {city.name}
               </SelectItem>
             ))}
@@ -129,7 +129,7 @@ const Tours = () => {
           <SelectContent>
             <SelectItem value="all">{t('tour.allCategories')}</SelectItem>
             {categories.map((category: any) => (
-              <SelectItem key={category.id} value={category.name}>
+              <SelectItem key={category.id} value={category.id}>
                 {category.name}
               </SelectItem>
             ))}
