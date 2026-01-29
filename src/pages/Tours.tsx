@@ -17,9 +17,10 @@ import { useTours, useCities, useCategories } from '@/hooks/useSupabaseApi';
 import tourCamel from '@/assets/tour-camel.jpg';
 import tourQuad from '@/assets/tour-quad.jpg';
 import tourCamp from '@/assets/tour-camp.jpg';
+import tourEpicSahara from '@/assets/tour-epic-sahara.jpg';
 
 // Fallback images for tours without images
-const fallbackImages = [tourCamel, tourQuad, tourCamp];
+const fallbackImages = [tourEpicSahara, tourCamel, tourQuad, tourCamp];
 
 const Tours = () => {
   const { t } = useTranslation();
