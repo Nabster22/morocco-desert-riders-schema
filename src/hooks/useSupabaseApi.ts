@@ -31,7 +31,7 @@ export const useTours = (filters?: TourFilters) => {
 export const useFeaturedTours = () => {
   return useQuery({
     queryKey: ['tours', 'featured'],
-    queryFn: () => toursAPI.getAll({ sort: 'popularity', limit: 6 }),
+    queryFn: () => toursAPI.getAll({ sort: 'price_desc', limit: 8 }),
     staleTime: 5 * 60 * 1000,
   });
 };
