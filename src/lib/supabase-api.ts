@@ -89,7 +89,7 @@ export const toursAPI = {
 
     // Pagination
     const page = filters?.page || 1;
-    const limit = filters?.limit || 10;
+    const limit = filters?.limit || 50; // Increased default to show more tours
     const from = (page - 1) * limit;
     const to = from + limit - 1;
     query = query.range(from, to);
