@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MapPin, Clock, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { getTourImage } from "@/assets/tours";
 
 interface TourCardProps {
   id: number;
@@ -30,12 +31,17 @@ const TourCard = ({
 }: TourCardProps) => {
   const { t } = useTranslation();
 
+  // Use generated images when the image is a placeholder
+  const displayImage = image === '/placeholder.svg' || !image || image.includes('placeholder')
+    ? getTourImage(title, category, city)
+    : image;
+
   return (
     <div className="group bg-card rounded-2xl overflow-hidden shadow-card card-hover">
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
         <img
-          src={image}
+          src={displayImage}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />

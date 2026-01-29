@@ -29,11 +29,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useTour, useTourReviews } from '@/hooks/useSupabaseApi';
-import tourCamp from '@/assets/tour-camp.jpg';
-import tourQuad from '@/assets/tour-quad.jpg';
-import tourCamel from '@/assets/tour-camel.jpg';
-
-const fallbackImages = [tourCamel, tourCamp, tourQuad, tourCamel, tourCamp];
+import { getTourGalleryImages } from '@/assets/tours';
 
 // Default tour data for when API fails or returns incomplete data
 const defaultTourData = {
@@ -93,11 +89,16 @@ const TourDetail = () => {
   const { data: tour, isLoading, isError, error } = useTour(tourId);
   const { data: reviews = [] } = useTourReviews(tourId);
 
-  // Get tour images or use fallbacks
-  const tourImages = tour?.images?.length > 0 ? tour.images : fallbackImages;
+  // Get city and category info
+  const cityName = tour?.city_name || tour?.cities?.name || 'Marrakech';
+  const categoryName = tour?.category_name || tour?.categories?.name;
+  
+  // Get tour images - use generated images as fallback
+  const tourImages = tour?.images?.length > 0 && !tour.images[0]?.includes('placeholder')
+    ? tour.images 
+    : getTourGalleryImages(tour?.name || '', categoryName, cityName);
   
   // Get city coordinates
-  const cityName = tour?.city_name || tour?.cities?.name || 'Marrakech';
   const cityCoords = cityCoordinates[cityName] || { lat: 31.7917, lng: -7.0926 };
 
   // Merge tour data with defaults (these fields don't exist in DB but are used for display)

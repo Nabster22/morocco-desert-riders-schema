@@ -3,23 +3,13 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight, Loader2 } from "lucide-react";
 import TourCard from "./TourCard";
 import { useFeaturedTours } from "@/hooks/useSupabaseApi";
-import tourCamp from "@/assets/tour-camp.jpg";
-import tourQuad from "@/assets/tour-quad.jpg";
-import tourCamel from "@/assets/tour-camel.jpg";
-import tourDunes from "@/assets/tour-dunes.jpg";
-import tourGlamping from "@/assets/tour-glamping.jpg";
-import tourBerber from "@/assets/tour-berber.jpg";
-import tourEpicSahara from "@/assets/tour-epic-sahara.jpg";
-import tourGrandSouthCircuit from "@/assets/tour-grand-south-circuit.jpg";
-
-// Fallback images for tours without proper images
-const fallbackImages = [tourGrandSouthCircuit, tourEpicSahara, tourCamel, tourQuad, tourGlamping, tourDunes, tourBerber, tourCamp];
+import { getTourImage, saharaDesertTour, quadAdventure, luxuryGlamping, merzougaSunrise, fesMedina, atlasMountains } from "@/assets/tours";
 
 // Static tours fallback when database is empty
 const staticTours = [
   {
     id: "static-1",
-    image: tourCamel,
+    image: saharaDesertTour,
     title: "Sahara Sunset Camel Trek & Desert Camp",
     city: "Merzouga",
     duration: "3 Days",
@@ -31,7 +21,7 @@ const staticTours = [
   },
   {
     id: "static-2",
-    image: tourQuad,
+    image: quadAdventure,
     title: "Agadir Quad Biking Desert Adventure",
     city: "Agadir",
     duration: "1 Day",
@@ -43,7 +33,7 @@ const staticTours = [
   },
   {
     id: "static-3",
-    image: tourGlamping,
+    image: luxuryGlamping,
     title: "Luxury Desert Glamping Under the Stars",
     city: "Marrakech",
     duration: "2 Days",
@@ -55,7 +45,7 @@ const staticTours = [
   },
   {
     id: "static-4",
-    image: tourDunes,
+    image: merzougaSunrise,
     title: "Merzouga Golden Dunes Expedition",
     city: "Merzouga",
     duration: "4 Days",
@@ -67,7 +57,7 @@ const staticTours = [
   },
   {
     id: "static-5",
-    image: tourBerber,
+    image: fesMedina,
     title: "Authentic Berber Cultural Experience",
     city: "Marrakech",
     duration: "2 Days",
@@ -79,7 +69,7 @@ const staticTours = [
   },
   {
     id: "static-6",
-    image: tourCamp,
+    image: atlasMountains,
     title: "Atlas Mountains & Desert Combo",
     city: "Marrakech",
     duration: "4 Days",
@@ -96,11 +86,9 @@ const FeaturedTours = () => {
   const { data: toursData, isLoading } = useFeaturedTours();
 
   // Map database tours to the format expected by TourCard
-  const dbTours = toursData?.data?.map((tour: any, index: number) => ({
+  const dbTours = toursData?.data?.map((tour: any) => ({
     id: tour.id,
-    image: (tour.images && tour.images[0] && tour.images[0] !== '/placeholder.svg') 
-      ? tour.images[0] 
-      : fallbackImages[index % fallbackImages.length],
+    image: getTourImage(tour.name, tour.category_name, tour.city_name),
     title: tour.name,
     city: tour.city_name || 'Morocco',
     duration: `${tour.duration_days} ${tour.duration_days === 1 ? 'Day' : 'Days'}`,
