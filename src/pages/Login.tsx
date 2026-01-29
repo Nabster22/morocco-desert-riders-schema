@@ -60,9 +60,8 @@ const Login = () => {
     try {
       await login(data.email, data.password);
       toast({ title: 'Welcome back!', description: 'Login successful' });
-      // Check role and redirect accordingly
-      const user = JSON.parse(localStorage.getItem('user') || '{}');
-      navigate(user.role === 'admin' ? '/admin' : from);
+      // Navigate based on admin status (will be checked after auth state updates)
+      navigate(from);
     } catch (error: any) {
       toast({ 
         title: 'Login failed', 

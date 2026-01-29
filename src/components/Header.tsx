@@ -18,12 +18,12 @@ const Header = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { user, profile, isAuthenticated, isAdmin, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate('/');
   };
 
@@ -145,15 +145,15 @@ const Header = () => {
                         <div className="w-7 h-7 rounded-full bg-terracotta/20 flex items-center justify-center">
                           <User className="h-4 w-4 text-terracotta" />
                         </div>
-                        <span className="hidden lg:inline">{user?.name?.split(' ')[0]}</span>
+                        <span className="hidden lg:inline">{profile?.name?.split(' ')[0]}</span>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
                       <div className="px-2 py-1.5 text-sm font-medium">
-                        {user?.name}
+                        {profile?.name}
                       </div>
                       <div className="px-2 pb-1.5 text-xs text-muted-foreground">
-                        {user?.email}
+                        {profile?.email || user?.email}
                       </div>
                       <DropdownMenuSeparator />
                       {isAdmin && (

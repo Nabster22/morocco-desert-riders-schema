@@ -13,7 +13,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Badge } from '@/components/ui/badge';
 import { ToursGridSkeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useTours, useCities, useCategories } from '@/hooks/useApi';
+import { useTours, useCities, useCategories } from '@/hooks/useSupabaseApi';
 import tourCamel from '@/assets/tour-camel.jpg';
 import tourQuad from '@/assets/tour-quad.jpg';
 import tourCamp from '@/assets/tour-camp.jpg';
@@ -57,8 +57,8 @@ const Tours = () => {
 
   const { data: toursData, isLoading, isError, error } = useTours(apiFilters);
 
-  const cities = citiesData?.data || [];
-  const categories = categoriesData?.data || [];
+  const cities = citiesData || [];
+  const categories = categoriesData || [];
   const tours = toursData?.data || [];
 
   const clearFilters = () => {
