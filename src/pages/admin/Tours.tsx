@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { useTours, useCities, useCategories, useCreateTour, useUpdateTour, useDeleteTour } from '@/hooks/useApi';
+import { useTours, useCities, useCategories, useCreateTour, useUpdateTour, useDeleteTour } from '@/hooks/useSupabaseApi';
 import ImageUpload from '@/components/ImageUpload';
 import tourCamel from '@/assets/tour-camel.jpg';
 
@@ -45,15 +45,21 @@ const AdminTours = () => {
   const deleteTour = useDeleteTour();
 
   const tours = toursData?.data || [];
-  const cities = citiesData?.data || [];
-  const categories = categoriesData?.data || [];
+  const cities = citiesData || [];
+  const categories = categoriesData || [];
 
   const handleCreateOrUpdate = async () => {
-    const data = { 
-      ...formData, 
-      city_id: parseInt(formData.city_id), 
-      category_id: parseInt(formData.category_id),
-      images: formData.images.length > 0 ? formData.images : undefined
+    const data: any = { 
+      name: formData.name,
+      city_id: formData.city_id || null, 
+      category_id: formData.category_id || null,
+      duration_days: formData.duration_days,
+      price_standard: formData.price_standard,
+      price_premium: formData.price_premium,
+      description: formData.description,
+      images: formData.images.length > 0 ? formData.images : [],
+      max_guests: 10,
+      is_active: true,
     };
     if (selectedTour) {
       await updateTour.mutateAsync({ id: selectedTour.id, data });
