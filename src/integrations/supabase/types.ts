@@ -14,16 +14,282 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          created_at: string
+          end_date: string
+          guests: number
+          id: string
+          special_requests: string | null
+          start_date: string
+          status: Database["public"]["Enums"]["booking_status"]
+          tier: Database["public"]["Enums"]["booking_tier"]
+          total_price: number
+          tour_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          end_date: string
+          guests?: number
+          id?: string
+          special_requests?: string | null
+          start_date: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          tier?: Database["public"]["Enums"]["booking_tier"]
+          total_price: number
+          tour_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          end_date?: string
+          guests?: number
+          id?: string
+          special_requests?: string | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          tier?: Database["public"]["Enums"]["booking_tier"]
+          total_price?: number
+          tour_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      cities: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          comment: string | null
+          created_at: string
+          id: string
+          is_verified: boolean | null
+          rating: number
+          tour_id: string
+          user_id: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          is_verified?: boolean | null
+          rating: number
+          tour_id: string
+          user_id: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          is_verified?: boolean | null
+          rating?: number
+          tour_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tours: {
+        Row: {
+          avg_rating: number | null
+          category_id: string | null
+          city_id: string | null
+          created_at: string
+          description: string | null
+          duration_days: number
+          id: string
+          images: string[] | null
+          is_active: boolean | null
+          max_guests: number
+          name: string
+          price_premium: number
+          price_standard: number
+          review_count: number | null
+          updated_at: string
+        }
+        Insert: {
+          avg_rating?: number | null
+          category_id?: string | null
+          city_id?: string | null
+          created_at?: string
+          description?: string | null
+          duration_days?: number
+          id?: string
+          images?: string[] | null
+          is_active?: boolean | null
+          max_guests?: number
+          name: string
+          price_premium: number
+          price_standard: number
+          review_count?: number | null
+          updated_at?: string
+        }
+        Update: {
+          avg_rating?: number | null
+          category_id?: string | null
+          city_id?: string | null
+          created_at?: string
+          description?: string | null
+          duration_days?: number
+          id?: string
+          images?: string[] | null
+          is_active?: boolean | null
+          max_guests?: number
+          name?: string
+          price_premium?: number
+          price_standard?: number
+          review_count?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tours_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tours_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "cities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "client"
+      booking_status: "pending" | "confirmed" | "completed" | "cancelled"
+      booking_tier: "standard" | "premium"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +416,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "client"],
+      booking_status: ["pending", "confirmed", "completed", "cancelled"],
+      booking_tier: ["standard", "premium"],
+    },
   },
 } as const

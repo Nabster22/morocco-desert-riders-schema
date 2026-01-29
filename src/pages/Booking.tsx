@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useTour, useCreateBooking } from '@/hooks/useApi';
+import { useTour, useCreateBooking } from '@/hooks/useSupabaseApi';
 import { useAuth } from '@/contexts/AuthContext';
 
 const bookingSchema = z.object({
@@ -43,20 +43,17 @@ const Booking = () => {
   const [bookingRef, setBookingRef] = useState('');
   const [submitError, setSubmitError] = useState('');
 
-  const { user, isAuthenticated } = useAuth();
-  const tourIdNum = parseInt(tourId || '0', 10);
-  const { data: tourResponse, isLoading: tourLoading } = useTour(tourIdNum);
+  const { user, profile, isAuthenticated } = useAuth();
+  const { data: tour, isLoading: tourLoading } = useTour(tourId || '');
   const createBookingMutation = useCreateBooking();
-
-  const tour = tourResponse?.data || tourResponse;
 
   const form = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
-      firstName: user?.name?.split(' ')[0] || '',
-      lastName: user?.name?.split(' ').slice(1).join(' ') || '',
-      email: user?.email || '',
-      phone: user?.phone || '',
+      firstName: profile?.name?.split(' ')[0] || '',
+      lastName: profile?.name?.split(' ').slice(1).join(' ') || '',
+      email: profile?.email || user?.email || '',
+      phone: profile?.phone || '',
       startDate: '',
       guests: '2',
       specialRequests: '',
@@ -67,20 +64,34 @@ const Booking = () => {
   const onSubmit = async (data: BookingFormData) => {
     setSubmitError('');
     
+    if (!tour) {
+      setSubmitError('Tour not found');
+      return;
+    }
+    
     try {
+      const guests = parseInt(data.guests, 10);
+      const price = selectedPackage === 'premium' ? tour.price_premium : tour.price_standard;
+      const totalPrice = price * guests;
+      const startDate = new Date(data.startDate);
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + (tour.duration_days || 1));
+      
       const bookingData = {
-        tour_id: tourIdNum,
+        tour_id: tour.id,
         start_date: data.startDate,
-        guests: parseInt(data.guests, 10),
+        end_date: endDate.toISOString().split('T')[0],
+        guests,
         tier: selectedPackage,
+        total_price: totalPrice,
         special_requests: data.specialRequests,
       };
 
       const response = await createBookingMutation.mutateAsync(bookingData);
-      setBookingRef(response.data?.reference || `MDR-${Date.now().toString().slice(-8)}`);
+      setBookingRef(`MDR-${response.id.slice(-8).toUpperCase()}`);
       setIsSubmitted(true);
     } catch (error: any) {
-      setSubmitError(error.response?.data?.error || 'Failed to create booking. Please try again.');
+      setSubmitError(error.message || 'Failed to create booking. Please try again.');
     }
   };
 
@@ -328,7 +339,7 @@ const Booking = () => {
                       <>
                         <div>
                           <h3 className="font-semibold text-foreground">{tour.name}</h3>
-                          <p className="text-sm text-muted-foreground">{tour.city_name || tour.city}</p>
+                          <p className="text-sm text-muted-foreground">{tour.city_name || tour.cities?.name}</p>
                         </div>
                         <div className="flex justify-between text-sm">
                           <span className="text-muted-foreground">Package</span>

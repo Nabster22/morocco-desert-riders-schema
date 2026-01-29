@@ -13,24 +13,24 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { useUserBookings, useCancelBooking } from '@/hooks/useApi';
+import { useUserBookings, useCancelBooking } from '@/hooks/useSupabaseApi';
 
 const Profile = () => {
   const { t } = useTranslation();
-  const { user, logout } = useAuth();
+  const { user, profile, logout } = useAuth();
   const navigate = useNavigate();
   
   const { data: bookingsResponse, isLoading, isError } = useUserBookings();
   const cancelBookingMutation = useCancelBooking();
   
-  const bookings = bookingsResponse?.data || [];
+  const bookings = bookingsResponse || [];
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate('/');
   };
 
-  const handleCancelBooking = async (bookingId: number) => {
+  const handleCancelBooking = async (bookingId: string) => {
     if (window.confirm('Are you sure you want to cancel this booking?')) {
       await cancelBookingMutation.mutateAsync(bookingId);
     }
@@ -65,22 +65,22 @@ const Profile = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
             <Avatar className="w-24 h-24 border-4 border-terracotta/20">
               <AvatarFallback className="text-3xl font-display bg-terracotta/10 text-terracotta">
-                {user?.name?.charAt(0) || user?.email?.charAt(0) || 'U'}
+                {profile?.name?.charAt(0) || user?.email?.charAt(0) || 'U'}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1">
               <h1 className="font-display text-3xl font-bold text-foreground mb-2">
-                {user?.name || 'User'}
+                {profile?.name || 'User'}
               </h1>
               <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <Mail className="h-4 w-4" />
-                  <span>{user?.email}</span>
+                  <span>{profile?.email || user?.email}</span>
                 </div>
-                {user?.phone && (
+                {profile?.phone && (
                   <div className="flex items-center gap-1">
                     <Phone className="h-4 w-4" />
-                    <span>{user.phone}</span>
+                    <span>{profile.phone}</span>
                   </div>
                 )}
               </div>
@@ -218,15 +218,15 @@ const Profile = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium text-muted-foreground">Full Name</label>
-                      <p className="text-foreground">{user?.name || 'Not set'}</p>
+                      <p className="text-foreground">{profile?.name || 'Not set'}</p>
                     </div>
                     <div>
                       <label className="text-sm font-medium text-muted-foreground">Email</label>
-                      <p className="text-foreground">{user?.email}</p>
+                      <p className="text-foreground">{profile?.email || user?.email}</p>
                     </div>
                     <div>
                       <label className="text-sm font-medium text-muted-foreground">Phone</label>
-                      <p className="text-foreground">{user?.phone || 'Not set'}</p>
+                      <p className="text-foreground">{profile?.phone || 'Not set'}</p>
                     </div>
                     <div>
                       <label className="text-sm font-medium text-muted-foreground">Account Type</label>

@@ -28,7 +28,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useTour, useTourReviews } from '@/hooks/useApi';
+import { useTour, useTourReviews } from '@/hooks/useSupabaseApi';
 import tourCamp from '@/assets/tour-camp.jpg';
 import tourQuad from '@/assets/tour-quad.jpg';
 import tourCamel from '@/assets/tour-camel.jpg';
@@ -85,29 +85,26 @@ const TourDetail = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
-  const tourId = parseInt(id || '0', 10);
+  const tourId = id || '';
   
   const [selectedPackage, setSelectedPackage] = useState<'standard' | 'premium'>('standard');
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const { data: tourResponse, isLoading, isError, error } = useTour(tourId);
-  const { data: reviewsResponse } = useTourReviews(tourId);
-
-  const tour = tourResponse?.data || tourResponse;
-  const reviews = reviewsResponse?.data || [];
+  const { data: tour, isLoading, isError, error } = useTour(tourId);
+  const { data: reviews = [] } = useTourReviews(tourId);
 
   // Get tour images or use fallbacks
   const tourImages = tour?.images?.length > 0 ? tour.images : fallbackImages;
   
   // Get city coordinates
-  const cityName = tour?.city_name || tour?.city || 'Marrakech';
+  const cityName = tour?.city_name || tour?.cities?.name || 'Marrakech';
   const cityCoords = cityCoordinates[cityName] || { lat: 31.7917, lng: -7.0926 };
 
-  // Merge tour data with defaults
-  const highlights = tour?.highlights || defaultTourData.highlights;
-  const included = tour?.included || defaultTourData.included;
-  const notIncluded = tour?.not_included || defaultTourData.not_included;
-  const itinerary = tour?.itinerary || defaultTourData.itinerary;
+  // Merge tour data with defaults (these fields don't exist in DB but are used for display)
+  const highlights = defaultTourData.highlights;
+  const included = defaultTourData.included;
+  const notIncluded = defaultTourData.not_included;
+  const itinerary = defaultTourData.itinerary;
 
   if (isLoading) {
     return (
@@ -182,7 +179,7 @@ const TourDetail = () => {
     },
     "offers": {
       "@type": "Offer",
-      "price": tour.price,
+      "price": tour.price_standard,
       "priceCurrency": "MAD",
       "availability": "https://schema.org/InStock",
       "validFrom": new Date().toISOString().split('T')[0]
@@ -309,7 +306,7 @@ const TourDetail = () => {
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="secondary">{tour.category_name || tour.category}</Badge>
+                  <Badge variant="secondary">{tour.category_name || tour.categories?.name}</Badge>
                   {tour.avg_rating && (
                     <div className="flex items-center gap-1 text-sm">
                       <Star className="h-4 w-4 fill-accent text-accent" />
