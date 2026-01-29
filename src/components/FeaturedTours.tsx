@@ -10,9 +10,10 @@ import tourDunes from "@/assets/tour-dunes.jpg";
 import tourGlamping from "@/assets/tour-glamping.jpg";
 import tourBerber from "@/assets/tour-berber.jpg";
 import tourEpicSahara from "@/assets/tour-epic-sahara.jpg";
+import tourGrandSouthCircuit from "@/assets/tour-grand-south-circuit.jpg";
 
 // Fallback images for tours without proper images
-const fallbackImages = [tourEpicSahara, tourCamel, tourQuad, tourGlamping, tourDunes, tourBerber, tourCamp];
+const fallbackImages = [tourGrandSouthCircuit, tourEpicSahara, tourCamel, tourQuad, tourGlamping, tourDunes, tourBerber, tourCamp];
 
 // Static tours fallback when database is empty
 const staticTours = [

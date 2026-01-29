@@ -18,9 +18,10 @@ import tourCamel from '@/assets/tour-camel.jpg';
 import tourQuad from '@/assets/tour-quad.jpg';
 import tourCamp from '@/assets/tour-camp.jpg';
 import tourEpicSahara from '@/assets/tour-epic-sahara.jpg';
+import tourGrandSouthCircuit from '@/assets/tour-grand-south-circuit.jpg';
 
 // Fallback images for tours without images
-const fallbackImages = [tourEpicSahara, tourCamel, tourQuad, tourCamp];
+const fallbackImages = [tourGrandSouthCircuit, tourEpicSahara, tourCamel, tourQuad, tourCamp];
 
 const Tours = () => {
   const { t } = useTranslation();
