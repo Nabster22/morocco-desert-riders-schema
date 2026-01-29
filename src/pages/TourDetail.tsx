@@ -595,7 +595,7 @@ const TourDetail = () => {
                   <Link to={`/booking/${tour.id}?package=${selectedPackage}`}>
                     <Button variant="hero" size="lg" className="w-full gap-2">
                       <Calendar className="h-5 w-5" />
-                      {t('booking.bookNow')}
+                      {t('common.bookNow')}
                     </Button>
                   </Link>
 
