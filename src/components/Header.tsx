@@ -29,6 +29,7 @@ const Header = () => {
 
   const navLinks = [
     { name: t('common.tours'), href: "/tours" },
+    { name: t('common.blog', 'Blog'), href: "/blog" },
     { name: t('common.about'), href: "/about" },
     { name: t('common.contact'), href: "/contact" },
   ];
