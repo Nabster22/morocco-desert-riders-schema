@@ -14,14 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { ToursGridSkeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useTours, useCities, useCategories } from '@/hooks/useSupabaseApi';
-import tourCamel from '@/assets/tour-camel.jpg';
-import tourQuad from '@/assets/tour-quad.jpg';
-import tourCamp from '@/assets/tour-camp.jpg';
-import tourEpicSahara from '@/assets/tour-epic-sahara.jpg';
-import tourGrandSouthCircuit from '@/assets/tour-grand-south-circuit.jpg';
-
-// Fallback images for tours without images
-const fallbackImages = [tourGrandSouthCircuit, tourEpicSahara, tourCamel, tourQuad, tourCamp];
+import { getTourImage as getImage } from '@/assets/tours';
 
 const Tours = () => {
   const { t } = useTranslation();
@@ -80,11 +73,14 @@ const Tours = () => {
     priceRange[0] > 0 ||
     priceRange[1] < 1000;
 
-  const getTourImage = (tour: any, index: number) => {
-    if (tour.images && tour.images.length > 0) {
+  // Use the centralized image mapping system
+  const getTourImage = (tour: any) => {
+    // If tour has valid images (not placeholder), use them
+    if (tour.images && tour.images.length > 0 && !tour.images[0]?.includes('placeholder')) {
       return tour.images[0];
     }
-    return fallbackImages[index % fallbackImages.length];
+    // Otherwise use the intelligent image mapping
+    return getImage(tour.name || '', tour.category_name, tour.city_name);
   };
 
   const FilterContent = () => (
@@ -334,7 +330,7 @@ const Tours = () => {
                             {/* Image */}
                             <div className="relative aspect-[4/3] overflow-hidden">
                               <img
-                                src={getTourImage(tour, index)}
+                                src={getTourImage(tour)}
                                 alt={tour.name}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
