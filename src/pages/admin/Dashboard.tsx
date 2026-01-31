@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { BarChart3, Users, MapPin, Calendar, TrendingUp, DollarSign, Package, FileDown, Loader2, AlertCircle } from 'lucide-react';
+import { BarChart3, Users, MapPin, Calendar, TrendingUp, DollarSign, Package, FileDown, Loader2, AlertCircle, FileText } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -51,6 +51,7 @@ const AdminDashboard = () => {
             <Link to="/admin" className="text-sm font-medium text-foreground">{t('admin.dashboard')}</Link>
             <Link to="/admin/tours" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.tours')}</Link>
             <Link to="/admin/bookings" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.bookings')}</Link>
+            <Link to="/admin/blog" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.blog', 'Blog')}</Link>
             <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
               <ThemeToggle />
               <LanguageSwitcher />

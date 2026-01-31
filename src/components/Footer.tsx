@@ -7,6 +7,7 @@ const Footer = () => {
 
   const quickLinks = [
     { label: t("footer.tours", "Tours"), to: "/tours" },
+    { label: t("footer.blog", "Blog"), to: "/blog" },
     { label: t("footer.about", "About Us"), to: "/about" },
     { label: t("footer.contact", "Contact"), to: "/contact" },
     { label: t("footer.faq", "FAQ"), to: "/faq" },

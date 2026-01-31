@@ -62,6 +62,7 @@ const AdminBookings = () => {
             <Link to="/admin" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.dashboard')}</Link>
             <Link to="/admin/tours" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.tours')}</Link>
             <Link to="/admin/bookings" className="text-sm font-medium text-foreground">{t('admin.bookings')}</Link>
+            <Link to="/admin/blog" className="text-sm text-muted-foreground hover:text-foreground">{t('admin.blog', 'Blog')}</Link>
             <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border"><ThemeToggle /><LanguageSwitcher /></div>
             <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Back to Site</Link>
           </nav>
